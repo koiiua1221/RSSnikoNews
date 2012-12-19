@@ -1,0 +1,477 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34C576161681980F003CF1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576151681980F003CF1A7 /* UIKit.framework */; };
+		34C576181681980F003CF1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576171681980F003CF1A7 /* Foundation.framework */; };
+		34C5761A1681980F003CF1A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576191681980F003CF1A7 /* CoreGraphics.framework */; };
+		34C576201681980F003CF1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C5761E1681980F003CF1A7 /* InfoPlist.strings */; };
+		34C576221681980F003CF1A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C576211681980F003CF1A7 /* main.m */; };
+		34C5762616819810003CF1A7 /* KMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5762516819810003CF1A7 /* KMAppDelegate.m */; };
+		34C5762816819810003CF1A7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C5762716819810003CF1A7 /* Default.png */; };
+		34C5762A16819810003CF1A7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C5762916819810003CF1A7 /* Default@2x.png */; };
+		34C5762C16819810003CF1A7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C5762B16819810003CF1A7 /* Default-568h@2x.png */; };
+		34C5762F16819810003CF1A7 /* KMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5762E16819810003CF1A7 /* KMViewController.m */; };
+		34C5763216819810003CF1A7 /* KMViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C5763016819810003CF1A7 /* KMViewController_iPhone.xib */; };
+		34C5763516819810003CF1A7 /* KMViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C5763316819810003CF1A7 /* KMViewController_iPad.xib */; };
+		34C5763D16819810003CF1A7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C5763C16819810003CF1A7 /* SenTestingKit.framework */; };
+		34C5763E16819810003CF1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576151681980F003CF1A7 /* UIKit.framework */; };
+		34C5763F16819810003CF1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576171681980F003CF1A7 /* Foundation.framework */; };
+		34C5764716819810003CF1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C5764516819810003CF1A7 /* InfoPlist.strings */; };
+		34C5764A16819810003CF1A7 /* RSSnikoNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5764916819810003CF1A7 /* RSSnikoNewsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		34C5764016819810003CF1A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 34C576081681980F003CF1A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34C576101681980F003CF1A7;
+			remoteInfo = RSSnikoNews;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		34C576111681980F003CF1A7 /* RSSnikoNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSnikoNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C576151681980F003CF1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		34C576171681980F003CF1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		34C576191681980F003CF1A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		34C5761D1681980F003CF1A7 /* RSSnikoNews-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSnikoNews-Info.plist"; sourceTree = "<group>"; };
+		34C5761F1681980F003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34C576211681980F003CF1A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		34C576231681980F003CF1A7 /* RSSnikoNews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSnikoNews-Prefix.pch"; sourceTree = "<group>"; };
+		34C576241681980F003CF1A7 /* KMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMAppDelegate.h; sourceTree = "<group>"; };
+		34C5762516819810003CF1A7 /* KMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMAppDelegate.m; sourceTree = "<group>"; };
+		34C5762716819810003CF1A7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		34C5762916819810003CF1A7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		34C5762B16819810003CF1A7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		34C5762D16819810003CF1A7 /* KMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMViewController.h; sourceTree = "<group>"; };
+		34C5762E16819810003CF1A7 /* KMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMViewController.m; sourceTree = "<group>"; };
+		34C5763116819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController_iPhone.xib; sourceTree = "<group>"; };
+		34C5763416819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController_iPad.xib; sourceTree = "<group>"; };
+		34C5763B16819810003CF1A7 /* RSSnikoNewsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSnikoNewsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		34C5763C16819810003CF1A7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		34C5764416819810003CF1A7 /* RSSnikoNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSnikoNewsTests-Info.plist"; sourceTree = "<group>"; };
+		34C5764616819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34C5764816819810003CF1A7 /* RSSnikoNewsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSnikoNewsTests.h; sourceTree = "<group>"; };
+		34C5764916819810003CF1A7 /* RSSnikoNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSnikoNewsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		34C5760E1681980F003CF1A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C576161681980F003CF1A7 /* UIKit.framework in Frameworks */,
+				34C576181681980F003CF1A7 /* Foundation.framework in Frameworks */,
+				34C5761A1681980F003CF1A7 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C5763716819810003CF1A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C5763D16819810003CF1A7 /* SenTestingKit.framework in Frameworks */,
+				34C5763E16819810003CF1A7 /* UIKit.framework in Frameworks */,
+				34C5763F16819810003CF1A7 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		34C576061681980F003CF1A7 = {
+			isa = PBXGroup;
+			children = (
+				34C5761B1681980F003CF1A7 /* RSSnikoNews */,
+				34C5764216819810003CF1A7 /* RSSnikoNewsTests */,
+				34C576141681980F003CF1A7 /* Frameworks */,
+				34C576121681980F003CF1A7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		34C576121681980F003CF1A7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				34C576111681980F003CF1A7 /* RSSnikoNews.app */,
+				34C5763B16819810003CF1A7 /* RSSnikoNewsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34C576141681980F003CF1A7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				34C576151681980F003CF1A7 /* UIKit.framework */,
+				34C576171681980F003CF1A7 /* Foundation.framework */,
+				34C576191681980F003CF1A7 /* CoreGraphics.framework */,
+				34C5763C16819810003CF1A7 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		34C5761B1681980F003CF1A7 /* RSSnikoNews */ = {
+			isa = PBXGroup;
+			children = (
+				34C576241681980F003CF1A7 /* KMAppDelegate.h */,
+				34C5762516819810003CF1A7 /* KMAppDelegate.m */,
+				34C5762D16819810003CF1A7 /* KMViewController.h */,
+				34C5762E16819810003CF1A7 /* KMViewController.m */,
+				34C5763016819810003CF1A7 /* KMViewController_iPhone.xib */,
+				34C5763316819810003CF1A7 /* KMViewController_iPad.xib */,
+				34C5761C1681980F003CF1A7 /* Supporting Files */,
+			);
+			path = RSSnikoNews;
+			sourceTree = "<group>";
+		};
+		34C5761C1681980F003CF1A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34C5761D1681980F003CF1A7 /* RSSnikoNews-Info.plist */,
+				34C5761E1681980F003CF1A7 /* InfoPlist.strings */,
+				34C576211681980F003CF1A7 /* main.m */,
+				34C576231681980F003CF1A7 /* RSSnikoNews-Prefix.pch */,
+				34C5762716819810003CF1A7 /* Default.png */,
+				34C5762916819810003CF1A7 /* Default@2x.png */,
+				34C5762B16819810003CF1A7 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		34C5764216819810003CF1A7 /* RSSnikoNewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				34C5764816819810003CF1A7 /* RSSnikoNewsTests.h */,
+				34C5764916819810003CF1A7 /* RSSnikoNewsTests.m */,
+				34C5764316819810003CF1A7 /* Supporting Files */,
+			);
+			path = RSSnikoNewsTests;
+			sourceTree = "<group>";
+		};
+		34C5764316819810003CF1A7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				34C5764416819810003CF1A7 /* RSSnikoNewsTests-Info.plist */,
+				34C5764516819810003CF1A7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34C576101681980F003CF1A7 /* RSSnikoNews */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C5764D16819810003CF1A7 /* Build configuration list for PBXNativeTarget "RSSnikoNews" */;
+			buildPhases = (
+				34C5760D1681980F003CF1A7 /* Sources */,
+				34C5760E1681980F003CF1A7 /* Frameworks */,
+				34C5760F1681980F003CF1A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RSSnikoNews;
+			productName = RSSnikoNews;
+			productReference = 34C576111681980F003CF1A7 /* RSSnikoNews.app */;
+			productType = "com.apple.product-type.application";
+		};
+		34C5763A16819810003CF1A7 /* RSSnikoNewsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 34C5765016819810003CF1A7 /* Build configuration list for PBXNativeTarget "RSSnikoNewsTests" */;
+			buildPhases = (
+				34C5763616819810003CF1A7 /* Sources */,
+				34C5763716819810003CF1A7 /* Frameworks */,
+				34C5763816819810003CF1A7 /* Resources */,
+				34C5763916819810003CF1A7 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				34C5764116819810003CF1A7 /* PBXTargetDependency */,
+			);
+			name = RSSnikoNewsTests;
+			productName = RSSnikoNewsTests;
+			productReference = 34C5763B16819810003CF1A7 /* RSSnikoNewsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34C576081681980F003CF1A7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = KM;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = KoujiMiura;
+			};
+			buildConfigurationList = 34C5760B1681980F003CF1A7 /* Build configuration list for PBXProject "RSSnikoNews" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 34C576061681980F003CF1A7;
+			productRefGroup = 34C576121681980F003CF1A7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34C576101681980F003CF1A7 /* RSSnikoNews */,
+				34C5763A16819810003CF1A7 /* RSSnikoNewsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		34C5760F1681980F003CF1A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C576201681980F003CF1A7 /* InfoPlist.strings in Resources */,
+				34C5762816819810003CF1A7 /* Default.png in Resources */,
+				34C5762A16819810003CF1A7 /* Default@2x.png in Resources */,
+				34C5762C16819810003CF1A7 /* Default-568h@2x.png in Resources */,
+				34C5763216819810003CF1A7 /* KMViewController_iPhone.xib in Resources */,
+				34C5763516819810003CF1A7 /* KMViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C5763816819810003CF1A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C5764716819810003CF1A7 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		34C5763916819810003CF1A7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		34C5760D1681980F003CF1A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C576221681980F003CF1A7 /* main.m in Sources */,
+				34C5762616819810003CF1A7 /* KMAppDelegate.m in Sources */,
+				34C5762F16819810003CF1A7 /* KMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		34C5763616819810003CF1A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C5764A16819810003CF1A7 /* RSSnikoNewsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		34C5764116819810003CF1A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34C576101681980F003CF1A7 /* RSSnikoNews */;
+			targetProxy = 34C5764016819810003CF1A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		34C5761E1681980F003CF1A7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34C5761F1681980F003CF1A7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		34C5763016819810003CF1A7 /* KMViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34C5763116819810003CF1A7 /* en */,
+			);
+			name = KMViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		34C5763316819810003CF1A7 /* KMViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34C5763416819810003CF1A7 /* en */,
+			);
+			name = KMViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		34C5764516819810003CF1A7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				34C5764616819810003CF1A7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		34C5764B16819810003CF1A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		34C5764C16819810003CF1A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34C5764E16819810003CF1A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RSSnikoNews/RSSnikoNews-Prefix.pch";
+				INFOPLIST_FILE = "RSSnikoNews/RSSnikoNews-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		34C5764F16819810003CF1A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RSSnikoNews/RSSnikoNews-Prefix.pch";
+				INFOPLIST_FILE = "RSSnikoNews/RSSnikoNews-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		34C5765116819810003CF1A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RSSnikoNews.app/RSSnikoNews";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RSSnikoNews/RSSnikoNews-Prefix.pch";
+				INFOPLIST_FILE = "RSSnikoNewsTests/RSSnikoNewsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		34C5765216819810003CF1A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RSSnikoNews.app/RSSnikoNews";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RSSnikoNews/RSSnikoNews-Prefix.pch";
+				INFOPLIST_FILE = "RSSnikoNewsTests/RSSnikoNewsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		34C5760B1681980F003CF1A7 /* Build configuration list for PBXProject "RSSnikoNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C5764B16819810003CF1A7 /* Debug */,
+				34C5764C16819810003CF1A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		34C5764D16819810003CF1A7 /* Build configuration list for PBXNativeTarget "RSSnikoNews" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C5764E16819810003CF1A7 /* Debug */,
+				34C5764F16819810003CF1A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		34C5765016819810003CF1A7 /* Build configuration list for PBXNativeTarget "RSSnikoNewsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34C5765116819810003CF1A7 /* Debug */,
+				34C5765216819810003CF1A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34C576081681980F003CF1A7 /* Project object */;
+}
