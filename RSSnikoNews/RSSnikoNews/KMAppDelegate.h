@@ -11,9 +11,11 @@
 @class KMViewController;
 
 @interface KMAppDelegate : UIResponder <UIApplicationDelegate>
+{
+  UIWindow *window;
+  UIViewController *rootController_;
+}
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) KMViewController *viewController;
 
 @end

@@ -8,21 +8,20 @@
 
 #import "KMAppDelegate.h"
 
-#import "KMViewController.h"
+#import "KMRootTableViewController.h"
 
 @implementation KMAppDelegate
+@synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-  if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-      self.viewController = [[KMViewController alloc] initWithNibName:@"KMViewController_iPhone" bundle:nil];
-  } else {
-      self.viewController = [[KMViewController alloc] initWithNibName:@"KMViewController_iPad" bundle:nil];
-  }
-  self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    CGRect bounds = [[UIScreen mainScreen]bounds];
+    window = [[UIWindow alloc]initWithFrame:bounds];
+    KMRootTableViewController *mainView = [[KMRootTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    rootController_ = [[UINavigationController alloc]initWithRootViewController:mainView];
+    [window addSubview:rootController_.view];
+    [window makeKeyAndVisible];
+    sleep(1.5f);
     return YES;
 }
 

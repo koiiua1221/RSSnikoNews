@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3406F1A51682A42E004BDDFD /* KMRSSResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */; };
+		3406F1AD1682DDB7004BDDFD /* KMRSSItemListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */; };
+		3406F1B01682F52F004BDDFD /* KMRSSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */; };
 		34C576161681980F003CF1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576151681980F003CF1A7 /* UIKit.framework */; };
 		34C576181681980F003CF1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576171681980F003CF1A7 /* Foundation.framework */; };
 		34C5761A1681980F003CF1A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576191681980F003CF1A7 /* CoreGraphics.framework */; };
@@ -16,14 +19,16 @@
 		34C5762816819810003CF1A7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C5762716819810003CF1A7 /* Default.png */; };
 		34C5762A16819810003CF1A7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C5762916819810003CF1A7 /* Default@2x.png */; };
 		34C5762C16819810003CF1A7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 34C5762B16819810003CF1A7 /* Default-568h@2x.png */; };
-		34C5762F16819810003CF1A7 /* KMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5762E16819810003CF1A7 /* KMViewController.m */; };
-		34C5763216819810003CF1A7 /* KMViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C5763016819810003CF1A7 /* KMViewController_iPhone.xib */; };
-		34C5763516819810003CF1A7 /* KMViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34C5763316819810003CF1A7 /* KMViewController_iPad.xib */; };
 		34C5763D16819810003CF1A7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C5763C16819810003CF1A7 /* SenTestingKit.framework */; };
 		34C5763E16819810003CF1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576151681980F003CF1A7 /* UIKit.framework */; };
 		34C5763F16819810003CF1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576171681980F003CF1A7 /* Foundation.framework */; };
 		34C5764716819810003CF1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C5764516819810003CF1A7 /* InfoPlist.strings */; };
 		34C5764A16819810003CF1A7 /* RSSnikoNewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5764916819810003CF1A7 /* RSSnikoNewsTests.m */; };
+		34C5765516819CEA003CF1A7 /* KMRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5765416819CEA003CF1A7 /* KMRootTableViewController.m */; };
+		34C576581681BFBF003CF1A7 /* KMRSSChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C576571681BFBF003CF1A7 /* KMRSSChannel.m */; };
+		34C5765C1681C38F003CF1A7 /* KMRSSChannelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5765B1681C38F003CF1A7 /* KMRSSChannelManager.m */; };
+		34C5765F1681C7FB003CF1A7 /* KMRSSConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5765E1681C7FB003CF1A7 /* KMRSSConnector.m */; };
+		34C5766216829E9D003CF1A7 /* KMRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5766116829E9D003CF1A7 /* KMRSSItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3406F1A31682A42E004BDDFD /* KMRSSResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSResponseParser.h; sourceTree = "<group>"; };
+		3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSResponseParser.m; sourceTree = "<group>"; };
+		3406F1AB1682DDB7004BDDFD /* KMRSSItemListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSItemListTableViewController.h; sourceTree = "<group>"; };
+		3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSItemListTableViewController.m; sourceTree = "<group>"; };
+		3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSContentViewController.h; sourceTree = "<group>"; };
+		3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSContentViewController.m; sourceTree = "<group>"; };
 		34C576111681980F003CF1A7 /* RSSnikoNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSnikoNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C576151681980F003CF1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		34C576171681980F003CF1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,16 +61,22 @@
 		34C5762716819810003CF1A7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		34C5762916819810003CF1A7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		34C5762B16819810003CF1A7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		34C5762D16819810003CF1A7 /* KMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMViewController.h; sourceTree = "<group>"; };
-		34C5762E16819810003CF1A7 /* KMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KMViewController.m; sourceTree = "<group>"; };
-		34C5763116819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController_iPhone.xib; sourceTree = "<group>"; };
-		34C5763416819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/KMViewController_iPad.xib; sourceTree = "<group>"; };
 		34C5763B16819810003CF1A7 /* RSSnikoNewsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSnikoNewsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C5763C16819810003CF1A7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		34C5764416819810003CF1A7 /* RSSnikoNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSnikoNewsTests-Info.plist"; sourceTree = "<group>"; };
 		34C5764616819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34C5764816819810003CF1A7 /* RSSnikoNewsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSnikoNewsTests.h; sourceTree = "<group>"; };
 		34C5764916819810003CF1A7 /* RSSnikoNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSnikoNewsTests.m; sourceTree = "<group>"; };
+		34C5765316819CEA003CF1A7 /* KMRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRootTableViewController.h; sourceTree = "<group>"; };
+		34C5765416819CEA003CF1A7 /* KMRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRootTableViewController.m; sourceTree = "<group>"; };
+		34C576561681BFBF003CF1A7 /* KMRSSChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSChannel.h; sourceTree = "<group>"; };
+		34C576571681BFBF003CF1A7 /* KMRSSChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSChannel.m; sourceTree = "<group>"; };
+		34C5765A1681C38F003CF1A7 /* KMRSSChannelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSChannelManager.h; sourceTree = "<group>"; };
+		34C5765B1681C38F003CF1A7 /* KMRSSChannelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSChannelManager.m; sourceTree = "<group>"; };
+		34C5765D1681C7FB003CF1A7 /* KMRSSConnector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSConnector.h; sourceTree = "<group>"; };
+		34C5765E1681C7FB003CF1A7 /* KMRSSConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSConnector.m; sourceTree = "<group>"; };
+		34C5766016829E9D003CF1A7 /* KMRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSItem.h; sourceTree = "<group>"; };
+		34C5766116829E9D003CF1A7 /* KMRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +103,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3406F1AA1682CE1E004BDDFD /* control */ = {
+			isa = PBXGroup;
+			children = (
+				34C5765316819CEA003CF1A7 /* KMRootTableViewController.h */,
+				34C5765416819CEA003CF1A7 /* KMRootTableViewController.m */,
+				3406F1AB1682DDB7004BDDFD /* KMRSSItemListTableViewController.h */,
+				3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */,
+				3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */,
+				3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */,
+			);
+			name = control;
+			sourceTree = "<group>";
+		};
 		34C576061681980F003CF1A7 = {
 			isa = PBXGroup;
 			children = (
@@ -121,10 +151,8 @@
 			children = (
 				34C576241681980F003CF1A7 /* KMAppDelegate.h */,
 				34C5762516819810003CF1A7 /* KMAppDelegate.m */,
-				34C5762D16819810003CF1A7 /* KMViewController.h */,
-				34C5762E16819810003CF1A7 /* KMViewController.m */,
-				34C5763016819810003CF1A7 /* KMViewController_iPhone.xib */,
-				34C5763316819810003CF1A7 /* KMViewController_iPad.xib */,
+				3406F1AA1682CE1E004BDDFD /* control */,
+				34C576591681BFD5003CF1A7 /* model */,
 				34C5761C1681980F003CF1A7 /* Supporting Files */,
 			);
 			path = RSSnikoNews;
@@ -161,6 +189,23 @@
 				34C5764516819810003CF1A7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		34C576591681BFD5003CF1A7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				34C576561681BFBF003CF1A7 /* KMRSSChannel.h */,
+				34C576571681BFBF003CF1A7 /* KMRSSChannel.m */,
+				34C5765A1681C38F003CF1A7 /* KMRSSChannelManager.h */,
+				34C5765B1681C38F003CF1A7 /* KMRSSChannelManager.m */,
+				34C5765D1681C7FB003CF1A7 /* KMRSSConnector.h */,
+				34C5765E1681C7FB003CF1A7 /* KMRSSConnector.m */,
+				34C5766016829E9D003CF1A7 /* KMRSSItem.h */,
+				34C5766116829E9D003CF1A7 /* KMRSSItem.m */,
+				3406F1A31682A42E004BDDFD /* KMRSSResponseParser.h */,
+				3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,8 +284,6 @@
 				34C5762816819810003CF1A7 /* Default.png in Resources */,
 				34C5762A16819810003CF1A7 /* Default@2x.png in Resources */,
 				34C5762C16819810003CF1A7 /* Default-568h@2x.png in Resources */,
-				34C5763216819810003CF1A7 /* KMViewController_iPhone.xib in Resources */,
-				34C5763516819810003CF1A7 /* KMViewController_iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +320,14 @@
 			files = (
 				34C576221681980F003CF1A7 /* main.m in Sources */,
 				34C5762616819810003CF1A7 /* KMAppDelegate.m in Sources */,
-				34C5762F16819810003CF1A7 /* KMViewController.m in Sources */,
+				34C5765516819CEA003CF1A7 /* KMRootTableViewController.m in Sources */,
+				34C576581681BFBF003CF1A7 /* KMRSSChannel.m in Sources */,
+				34C5765C1681C38F003CF1A7 /* KMRSSChannelManager.m in Sources */,
+				34C5765F1681C7FB003CF1A7 /* KMRSSConnector.m in Sources */,
+				34C5766216829E9D003CF1A7 /* KMRSSItem.m in Sources */,
+				3406F1A51682A42E004BDDFD /* KMRSSResponseParser.m in Sources */,
+				3406F1AD1682DDB7004BDDFD /* KMRSSItemListTableViewController.m in Sources */,
+				3406F1B01682F52F004BDDFD /* KMRSSContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,22 +356,6 @@
 				34C5761F1681980F003CF1A7 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		34C5763016819810003CF1A7 /* KMViewController_iPhone.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				34C5763116819810003CF1A7 /* en */,
-			);
-			name = KMViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		34C5763316819810003CF1A7 /* KMViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				34C5763416819810003CF1A7 /* en */,
-			);
-			name = KMViewController_iPad.xib;
 			sourceTree = "<group>";
 		};
 		34C5764516819810003CF1A7 /* InfoPlist.strings */ = {
@@ -462,6 +496,7 @@
 				34C5764F16819810003CF1A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		34C5765016819810003CF1A7 /* Build configuration list for PBXNativeTarget "RSSnikoNewsTests" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +505,7 @@
 				34C5765216819810003CF1A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
