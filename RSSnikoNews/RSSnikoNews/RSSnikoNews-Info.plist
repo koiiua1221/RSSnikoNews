@@ -36,6 +36,8 @@
 	</array>
 	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

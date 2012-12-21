@@ -29,6 +29,7 @@
 		34C5765C1681C38F003CF1A7 /* KMRSSChannelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5765B1681C38F003CF1A7 /* KMRSSChannelManager.m */; };
 		34C5765F1681C7FB003CF1A7 /* KMRSSConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5765E1681C7FB003CF1A7 /* KMRSSConnector.m */; };
 		34C5766216829E9D003CF1A7 /* KMRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34C5766116829E9D003CF1A7 /* KMRSSItem.m */; };
+		34EA6D8B16840A3B001EA040 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 34EA6D8A16840A3B001EA040 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		34C5765E1681C7FB003CF1A7 /* KMRSSConnector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSConnector.m; sourceTree = "<group>"; };
 		34C5766016829E9D003CF1A7 /* KMRSSItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSItem.h; sourceTree = "<group>"; };
 		34C5766116829E9D003CF1A7 /* KMRSSItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSItem.m; sourceTree = "<group>"; };
+		34EA6D8A16840A3B001EA040 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				34C5761D1681980F003CF1A7 /* RSSnikoNews-Info.plist */,
+				34EA6D8A16840A3B001EA040 /* icon.png */,
 				34C5761E1681980F003CF1A7 /* InfoPlist.strings */,
 				34C576211681980F003CF1A7 /* main.m */,
 				34C576231681980F003CF1A7 /* RSSnikoNews-Prefix.pch */,
@@ -284,6 +287,7 @@
 				34C5762816819810003CF1A7 /* Default.png in Resources */,
 				34C5762A16819810003CF1A7 /* Default@2x.png in Resources */,
 				34C5762C16819810003CF1A7 /* Default-568h@2x.png in Resources */,
+				34EA6D8B16840A3B001EA040 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

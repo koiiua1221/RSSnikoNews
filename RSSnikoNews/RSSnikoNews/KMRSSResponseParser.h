@@ -22,6 +22,8 @@ enum {
     int                 _networkState;
     NSString*           _feedUrlString;
     KMRSSChannel*       _parsedChannel;
+    NSURLConnection*    _connection;
+    NSMutableData*      _downloadedData;
     NSError*            _error;
     BOOL                _foundRss;
     BOOL                _isRss;
@@ -37,8 +39,10 @@ enum {
 @property (retain) KMRSSChannel* parsedChannel;
 @property (nonatomic, readonly) NSError* error;
 @property (nonatomic, assign) id delegate;
+@property (nonatomic, readonly) NSData* downloadedData;
 
 - (void)parse;
+- (void)cancel;
 
 @end
 
