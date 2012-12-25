@@ -10,6 +10,9 @@
 #import "KMRSSChannelManager.h"
 #import "KMRSSItemListTableViewController.h"
 #import "KMRSSConnector.h"
+#import "KMHTMLChannelManager.h"
+#import "KMHTMLItemListTableViewController.h"
+#import "KMHTMLConnector.h"
 
 @interface KMRootTableViewController ()
 
@@ -23,7 +26,7 @@
     if (self) {
         // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
-        self.title = @"ニコニコニュースRSS";
+        self.title = @"ニコニコニュース ビューワ";
     }
     return self;
 }
@@ -31,19 +34,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self initRssChannel];
+    [[KMRSSConnector sharedConnector]refreshAllChannels];
+    [self initHTMLChannel];
+    [[KMHTMLConnector sharedConnector]refreshAllChannels];
+}
+- (void)initRssChannel {
     if ([KMRSSChannelManager sharedManager].channels.count==0)
     {
         //ToDo 定数配列の宣言位置をしかるべきところへ
         NSArray *nikoRssChannelName = [NSArray arrayWithObjects:@"トピックス",
-                                                                @"ホットランキング",
-                                                                @"デイリーランキング",
-                                                                @"ウィークリーランキング",
-                                                                @"NCN", nil];
+                                       @"ホットランキング",
+                                       @"デイリーランキング",
+                                       @"ウィークリーランキング",
+                                       @"NCN", nil];
         NSArray *nikoRssChannelUrl = [NSArray arrayWithObjects: @"http://news.nicovideo.jp/topiclist?rss=2.0",
-                                                                @"http://news.nicovideo.jp/ranking/hot?rss=2.0",
-                                                                @"http://news.nicovideo.jp/ranking/daily?rss=2.0",
-                                                                @"http://news.nicovideo.jp/ranking/weekly?rss=2.0",
-                                                                @"http://news.nicovideo.jp/media/article/1?rss=2.0", nil];
+                                      @"http://news.nicovideo.jp/ranking/hot?rss=2.0",
+                                      @"http://news.nicovideo.jp/ranking/daily?rss=2.0",
+                                      @"http://news.nicovideo.jp/ranking/weekly?rss=2.0",
+                                      @"http://news.nicovideo.jp/media/article/1?rss=2.0", nil];
         int i;
         for (i = 0; i<maxnum; i++)
         {
@@ -55,11 +64,43 @@
         }
         [[KMRSSChannelManager sharedManager]save];
     }
-    [[KMRSSConnector sharedConnector]refreshAllChannels];
-
 }
-
--(void)viewWillAppear:(BOOL)animated
+- (void)initHTMLChannel {
+    if ([KMHTMLChannelManager sharedManager].channels.count==0)
+    {
+        //ToDo 定数配列の宣言位置をしかるべきところへ
+        NSArray *nikoHTMLChannelName = [NSArray arrayWithObjects:   @"政治・経済",
+                                        @"ビジネス",
+                                        @"ネット・科学",
+                                        @"海外",
+                                        @"スポーツ",
+                                        @"エンタメ",
+                                        @"ゲーム・アニメ",
+                                        @"雑学",
+                                        @"ブロマガ",nil];
+        NSArray *nikoRssChannelUrl = [NSArray arrayWithObjects:
+                                      @"http://news.nicovideo.jp/tag/%E6%94%BF%E6%B2%BB%E3%83%BB%E7%A4%BE%E4%BC%9A",
+                                      @"http://news.nicovideo.jp/tag/%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9",
+                                      @"http://news.nicovideo.jp/tag/%E3%83%8D%E3%83%83%E3%83%88%E3%83%BB%E7%A7%91%E5%AD%A6",
+                                      @"http://news.nicovideo.jp/tag/%E6%B5%B7%E5%A4%96",
+                                      @"http://news.nicovideo.jp/tag/%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84",
+                                      @"http://news.nicovideo.jp/tag/%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%A1",
+                                      @"http://news.nicovideo.jp/tag/%E3%82%B2%E3%83%BC%E3%83%A0%E3%83%BB%E3%82%A2%E3%83%8B%E3%83%A1",
+                                      @"http://news.nicovideo.jp/tag/%E9%9B%91%E5%AD%A6",
+                                      @"http://news.nicovideo.jp/tag/%E3%83%96%E3%83%AD%E3%83%9E%E3%82%AC",nil];
+        int i;
+        for (i = 0; i<[nikoHTMLChannelName count]; i++)
+        {
+            KMHTMLChannel* htmlChannel;
+            htmlChannel = [[KMHTMLChannel alloc]init];
+            [[KMHTMLChannelManager sharedManager]addChannel:htmlChannel];
+            htmlChannel.title = [nikoHTMLChannelName objectAtIndex:i];
+            htmlChannel.feedUrlString = [nikoRssChannelUrl objectAtIndex:i];
+        }
+        [[KMHTMLChannelManager sharedManager]save];
+    }
+}
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
@@ -74,7 +115,7 @@
             NSIndexPath*    lastIndexPath;
             lastIndexPath = [NSIndexPath indexPathForRow:[channels count] - 1 inSection:0];
             [self.tableView scrollToRowAtIndexPath:lastIndexPath
-                              atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                                  atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         }
     }else {
         NSIndexPath*    indexPath;
@@ -82,7 +123,7 @@
         if (indexPath) {
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
-
+        
         for (UITableViewCell* cell in [self.tableView visibleCells]) {
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
@@ -104,10 +145,15 @@
 
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    
-    KMRSSChannel* channel =[[KMRSSChannelManager sharedManager].channels objectAtIndex:indexPath.row];
-    cell.textLabel.text = channel.title;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(indexPath.section==0) {
+        KMRSSChannel* channel =[[KMRSSChannelManager sharedManager].channels objectAtIndex:indexPath.row];
+        cell.textLabel.text = channel.title;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }else{
+        KMHTMLChannel* hchannel = [[KMHTMLChannelManager sharedManager].channels objectAtIndex:indexPath.row];
+        cell.textLabel.text = hchannel.title;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
 }
 
 #pragma mark - Table view data source
@@ -116,14 +162,19 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [KMRSSChannelManager sharedManager].channels.count;
+    if (section==0) {
+        return [KMRSSChannelManager sharedManager].channels.count;
+    }else{
+        return [KMHTMLChannelManager sharedManager].channels.count;
+    }
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -141,56 +192,23 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section==0) {
+        [self toRSSItemview:indexPath];
+    }else{
+        [self toHTMLItemview:indexPath];
+    }
+}
+- (void)toRSSItemview:(NSIndexPath *)indexPath {
     NSArray*    channels;
     KMRSSChannel* channel = nil;
     channels = [KMRSSChannelManager sharedManager].channels;
     if (indexPath.row < [channels count]) {
         channel = [channels objectAtIndex:indexPath.row];
     }
-    
     if (!channel) {
         return;
     }
@@ -199,10 +217,32 @@
     controller.channel = channel;
     controller.delegate = self;
     
-    [self.navigationController pushViewController:controller animated:YES];}
+    [self.navigationController pushViewController:controller animated:YES];
+}
+- (void)toHTMLItemview:(NSIndexPath *)indexPath {
+    NSArray*    channels;
+    KMHTMLChannel* channel = nil;
+    channels = [KMHTMLChannelManager sharedManager].channels;
+    if (indexPath.row < [channels count]) {
+        channel = [channels objectAtIndex:indexPath.row];
+    }
+    if (!channel) {
+        return;
+    }
+    KMHTMLItemListTableViewController*  controller;
+    controller = [[KMHTMLItemListTableViewController alloc] init];
+    controller.channel = channel;
+    controller.delegate = self;
+    
+    [self.navigationController pushViewController:controller animated:YES];
+}
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"\n\n\n\nチャンネル選択";//中央揃えにする //ToDo　iphone5,4s以前とで微調整
+    if (section == 0) {
+        return @"RSS";
+    }else{
+        return @"ジャンル";
+    }
 }
 
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification

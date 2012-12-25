@@ -9,7 +9,6 @@
 #import "KMRSSResponseParser.h"
 #import "KMRSSItem.h"
 #import "KMRSSChannel.h"
-#import "KMRSSResponseParser.h"
 
 @implementation KMRSSResponseParser
 
