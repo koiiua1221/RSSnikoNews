@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>トピックス</string>
+		<key>feedUrlString</key>
+		<string>http://news.nicovideo.jp/topiclist?rss=2.0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>ホットランキング</string>
+		<key>feedUrlString</key>
+		<string>http://news.nicovideo.jp/ranking/hot?rss=2.0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>デイリーランキング</string>
+		<key>feedUrlString</key>
+		<string>http://news.nicovideo.jp/ranking/daily?rss=2.0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>ウィークリーランキング</string>
+		<key>feedUrlString</key>
+		<string>http://news.nicovideo.jp/ranking/weekly?rss=2.0</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>NCN</string>
+		<key>feedUrlString</key>
+		<string>http://news.nicovideo.jp/media/article/1?rss=2.0</string>
+	</dict>
+</array>
+</plist>

@@ -8,15 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum tagTypes
-{
-    topics,
-    hotRanking,
-    dailyRanking,
-    weeklyRanking,
-    ncn,
-    maxnum
-}nikoRsschannel;
 @interface KMRootTableViewController : UITableViewController<UIActionSheetDelegate>
 {
     UIActionSheet*  _refreshAllChannelsSheet;

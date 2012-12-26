@@ -34,33 +34,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initRssChannel];
+        [self initRssChannel];
     [[KMRSSConnector sharedConnector]refreshAllChannels];
     [self initHTMLChannel];
     [[KMHTMLConnector sharedConnector]refreshAllChannels];
 }
 - (void)initRssChannel {
     if ([KMRSSChannelManager sharedManager].channels.count==0)
-    {
-        //ToDo 定数配列の宣言位置をしかるべきところへ
-        NSArray *nikoRssChannelName = [NSArray arrayWithObjects:@"トピックス",
-                                       @"ホットランキング",
-                                       @"デイリーランキング",
-                                       @"ウィークリーランキング",
-                                       @"NCN", nil];
-        NSArray *nikoRssChannelUrl = [NSArray arrayWithObjects: @"http://news.nicovideo.jp/topiclist?rss=2.0",
-                                      @"http://news.nicovideo.jp/ranking/hot?rss=2.0",
-                                      @"http://news.nicovideo.jp/ranking/daily?rss=2.0",
-                                      @"http://news.nicovideo.jp/ranking/weekly?rss=2.0",
-                                      @"http://news.nicovideo.jp/media/article/1?rss=2.0", nil];
-        int i;
-        for (i = 0; i<maxnum; i++)
+    { 
+        NSString *file = [[NSBundle mainBundle] pathForResource:@"rss" ofType:@"plist"];
+        NSArray *rssChannelArray = [NSArray arrayWithContentsOfFile:file];
+        
+        for (NSDictionary *rssChannelData in rssChannelArray)
         {
             KMRSSChannel* rssChannel;
             rssChannel = [[KMRSSChannel alloc]init];
             [[KMRSSChannelManager sharedManager]addChannel:rssChannel];
-            rssChannel.title = [nikoRssChannelName objectAtIndex:i];
-            rssChannel.feedUrlString = [nikoRssChannelUrl objectAtIndex:i];
+            rssChannel.title = [rssChannelData objectForKey:@"title"];
+            rssChannel.feedUrlString = [rssChannelData objectForKey:@"feedUrlString"];
         }
         [[KMRSSChannelManager sharedManager]save];
     }
@@ -68,34 +59,16 @@
 - (void)initHTMLChannel {
     if ([KMHTMLChannelManager sharedManager].channels.count==0)
     {
-        //ToDo 定数配列の宣言位置をしかるべきところへ
-        NSArray *nikoHTMLChannelName = [NSArray arrayWithObjects:   @"政治・経済",
-                                        @"ビジネス",
-                                        @"ネット・科学",
-                                        @"海外",
-                                        @"スポーツ",
-                                        @"エンタメ",
-                                        @"ゲーム・アニメ",
-                                        @"雑学",
-                                        @"ブロマガ",nil];
-        NSArray *nikoRssChannelUrl = [NSArray arrayWithObjects:
-                                      @"http://news.nicovideo.jp/tag/%E6%94%BF%E6%B2%BB%E3%83%BB%E7%A4%BE%E4%BC%9A",
-                                      @"http://news.nicovideo.jp/tag/%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9",
-                                      @"http://news.nicovideo.jp/tag/%E3%83%8D%E3%83%83%E3%83%88%E3%83%BB%E7%A7%91%E5%AD%A6",
-                                      @"http://news.nicovideo.jp/tag/%E6%B5%B7%E5%A4%96",
-                                      @"http://news.nicovideo.jp/tag/%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84",
-                                      @"http://news.nicovideo.jp/tag/%E3%82%A8%E3%83%B3%E3%82%BF%E3%83%A1",
-                                      @"http://news.nicovideo.jp/tag/%E3%82%B2%E3%83%BC%E3%83%A0%E3%83%BB%E3%82%A2%E3%83%8B%E3%83%A1",
-                                      @"http://news.nicovideo.jp/tag/%E9%9B%91%E5%AD%A6",
-                                      @"http://news.nicovideo.jp/tag/%E3%83%96%E3%83%AD%E3%83%9E%E3%82%AC",nil];
-        int i;
-        for (i = 0; i<[nikoHTMLChannelName count]; i++)
+        NSString *file = [[NSBundle mainBundle] pathForResource:@"genre" ofType:@"plist"];
+        NSArray *genreChannelArray = [NSArray arrayWithContentsOfFile:file];
+
+        for (NSDictionary *genreChannelData in genreChannelArray)
         {
             KMHTMLChannel* htmlChannel;
             htmlChannel = [[KMHTMLChannel alloc]init];
             [[KMHTMLChannelManager sharedManager]addChannel:htmlChannel];
-            htmlChannel.title = [nikoHTMLChannelName objectAtIndex:i];
-            htmlChannel.feedUrlString = [nikoRssChannelUrl objectAtIndex:i];
+            htmlChannel.title = [genreChannelData objectForKey:@"title"];
+            htmlChannel.feedUrlString = [genreChannelData objectForKey:@"feedUrlString"];
         }
         [[KMHTMLChannelManager sharedManager]save];
     }
