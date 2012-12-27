@@ -17,7 +17,7 @@ enum {
 @class KMHTMLItem;
 @class KMHTMLChannel;
 
-@interface KMHTMLResponseParser : NSObject<NSXMLParserDelegate>
+@interface KMHTMLResponseParser : NSObject
 {
     int                 _networkState;
     NSString*           _feedUrlString;

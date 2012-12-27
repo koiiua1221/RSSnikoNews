@@ -7,20 +7,47 @@
 //
 
 #import "KMAppDelegate.h"
-
 #import "KMRootTableViewController.h"
+#import "KMGenreRootTableViewController.h"
+#import "KMTOPICRootTableViewController.h"
 
 @implementation KMAppDelegate
 @synthesize window;
+@synthesize mainView,genreView,tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     CGRect bounds = [[UIScreen mainScreen]bounds];
     window = [[UIWindow alloc]initWithFrame:bounds];
-    KMRootTableViewController *mainView = [[KMRootTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+
+    mainView = [[KMRootTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     rootController_ = [[UINavigationController alloc]initWithRootViewController:mainView];
-    [window addSubview:rootController_.view];
+    [viewControllers addObject:rootController_];
+
+    genreView = [[KMGenreRootTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    genreRootController_ = [[UINavigationController alloc]initWithRootViewController:genreView];
+    [viewControllers addObject:genreRootController_];
+    
+    topicView = [[KMTOPICRootTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    topicRootController_ = [[UINavigationController alloc]initWithRootViewController:topicView];
+    [viewControllers addObject:topicRootController_];
+    
+    tabBarController = [[UITabBarController alloc]init];
+    tabBarController.viewControllers = viewControllers;
+
+    NSArray *tabItemAry = [tabBarController.tabBar items];
+    UITabBarItem *tabItem1 = [tabItemAry objectAtIndex:0];
+    tabItem1.image = [UIImage imageNamed:@"rss.png"];
+    UITabBarItem *tabItem2 = [tabItemAry objectAtIndex:1];
+    tabItem2.image = [UIImage imageNamed:@"genre.png"];
+    
+    UITabBarItem *tabItem3 = [tabItemAry objectAtIndex:2];
+    tabItem3.image = [UIImage imageNamed:@"topic.png"];
+
+    [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
+
     sleep(1.5f);
     return YES;
 }

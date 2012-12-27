@@ -10,6 +10,11 @@
 		3406F1A51682A42E004BDDFD /* KMRSSResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */; };
 		3406F1AD1682DDB7004BDDFD /* KMRSSItemListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */; };
 		3406F1B01682F52F004BDDFD /* KMRSSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */; };
+		3465E2D7168AC8C700AA2B12 /* KMGenreRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */; };
+		3465E2DC168AD72200AA2B12 /* genre.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2DA168AD72200AA2B12 /* genre.png */; };
+		3465E2DD168AD72200AA2B12 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2DB168AD72200AA2B12 /* rss.png */; };
+		3465E2E4168BD39200AA2B12 /* KMTOPICRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465E2E2168BD39100AA2B12 /* KMTOPICRootTableViewController.m */; };
+		3465E2E6168C3FD200AA2B12 /* topic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2E5168C3FD200AA2B12 /* topic.png */; };
 		346995881689E9B90068F7D3 /* KMTOPICChannel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3469957F1689E9B90068F7D3 /* KMTOPICChannel.m */; };
 		346995891689E9B90068F7D3 /* KMTOPICChannelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 346995811689E9B90068F7D3 /* KMTOPICChannelManager.m */; };
 		3469958A1689E9B90068F7D3 /* KMTOPICConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 346995831689E9B90068F7D3 /* KMTOPICConnector.m */; };
@@ -67,6 +72,13 @@
 		3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSItemListTableViewController.m; sourceTree = "<group>"; };
 		3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSContentViewController.h; sourceTree = "<group>"; };
 		3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSContentViewController.m; sourceTree = "<group>"; };
+		3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMGenreRootTableViewController.m; sourceTree = "<group>"; };
+		3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMGenreRootTableViewController.h; sourceTree = "<group>"; };
+		3465E2DA168AD72200AA2B12 /* genre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = genre.png; sourceTree = "<group>"; };
+		3465E2DB168AD72200AA2B12 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rss.png; sourceTree = "<group>"; };
+		3465E2E2168BD39100AA2B12 /* KMTOPICRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTOPICRootTableViewController.m; sourceTree = "<group>"; };
+		3465E2E3168BD39200AA2B12 /* KMTOPICRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTOPICRootTableViewController.h; sourceTree = "<group>"; };
+		3465E2E5168C3FD200AA2B12 /* topic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topic.png; sourceTree = "<group>"; };
 		3469957E1689E9B90068F7D3 /* KMTOPICChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTOPICChannel.h; sourceTree = "<group>"; };
 		3469957F1689E9B90068F7D3 /* KMTOPICChannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTOPICChannel.m; sourceTree = "<group>"; };
 		346995801689E9B90068F7D3 /* KMTOPICChannelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTOPICChannelManager.h; sourceTree = "<group>"; };
@@ -175,6 +187,10 @@
 				3469958E1689EB540068F7D3 /* KMTOPICContentViewController.m */,
 				3469958F1689EB540068F7D3 /* KMTOPICItemListTableViewController.h */,
 				346995901689EB540068F7D3 /* KMTOPICItemListTableViewController.m */,
+				3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */,
+				3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */,
+				3465E2E2168BD39100AA2B12 /* KMTOPICRootTableViewController.m */,
+				3465E2E3168BD39200AA2B12 /* KMTOPICRootTableViewController.h */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -255,6 +271,9 @@
 				34C5762716819810003CF1A7 /* Default.png */,
 				34C5762916819810003CF1A7 /* Default@2x.png */,
 				34C5762B16819810003CF1A7 /* Default-568h@2x.png */,
+				3465E2DA168AD72200AA2B12 /* genre.png */,
+				3465E2DB168AD72200AA2B12 /* rss.png */,
+				3465E2E5168C3FD200AA2B12 /* topic.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -401,6 +420,9 @@
 				34EA6D8B16840A3B001EA040 /* icon.png in Resources */,
 				34699594168A8D330068F7D3 /* rss.plist in Resources */,
 				34699596168A91400068F7D3 /* genre.plist in Resources */,
+				3465E2DC168AD72200AA2B12 /* genre.png in Resources */,
+				3465E2DD168AD72200AA2B12 /* rss.png in Resources */,
+				3465E2E6168C3FD200AA2B12 /* topic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +482,8 @@
 				3469958C1689E9B90068F7D3 /* KMTOPICResponseParser.m in Sources */,
 				346995911689EB540068F7D3 /* KMTOPICContentViewController.m in Sources */,
 				346995921689EB540068F7D3 /* KMTOPICItemListTableViewController.m in Sources */,
+				3465E2D7168AC8C700AA2B12 /* KMGenreRootTableViewController.m in Sources */,
+				3465E2E4168BD39200AA2B12 /* KMTOPICRootTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

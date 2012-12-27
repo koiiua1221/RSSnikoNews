@@ -53,6 +53,9 @@ static KMTOPICChannelManager*  _sharedInstance = nil;
     }
     [_channels removeObjectAtIndex:index];
 }
+-(void)removeAllChannel {
+    [_channels removeAllObjects];
+}
 - (void)moveChannelAtIndex:(unsigned int)fromIndex toIndex:(unsigned int)toIndex
 {
     if (fromIndex > [_channels count] - 1) {

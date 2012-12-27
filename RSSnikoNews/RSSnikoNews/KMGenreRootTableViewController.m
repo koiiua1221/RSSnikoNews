@@ -1,21 +1,21 @@
 //
-//  KMRootTableViewController.m
+//  KMGenreRootTableViewController.m
 //  RSSnikoNews
 //
 //  Created by KoujiMiura on 2012/12/19.
 //  Copyright (c) 2012年 KoujiMiura. All rights reserved.
 //
 
-#import "KMRootTableViewController.h"
-#import "KMRSSChannelManager.h"
-#import "KMRSSItemListTableViewController.h"
-#import "KMRSSConnector.h"
+#import "KMGenreRootTableViewController.h"
+#import "KMHTMLChannelManager.h"
+#import "KMHTMLItemListTableViewController.h"
+#import "KMHTMLConnector.h"
 
-@interface KMRootTableViewController ()
+@interface KMGenreRootTableViewController ()
 
 @end
 
-@implementation KMRootTableViewController
+@implementation KMGenreRootTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -23,7 +23,7 @@
     if (self) {
         // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
-        self.title = @"RSS別 News";
+        self.title = @"ジャンル別 News";
     }
     return self;
 }
@@ -31,24 +31,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initRssChannel];
-    [[KMRSSConnector sharedConnector]refreshAllChannels];
+    [self initHTMLChannel];
+    [[KMHTMLConnector sharedConnector]refreshAllChannels];    
 }
-- (void)initRssChannel {
-    if ([KMRSSChannelManager sharedManager].channels.count==0)
-    { 
-        NSString *file = [[NSBundle mainBundle] pathForResource:@"rss" ofType:@"plist"];
-        NSArray *rssChannelArray = [NSArray arrayWithContentsOfFile:file];
-        
-        for (NSDictionary *rssChannelData in rssChannelArray)
+- (void)initHTMLChannel {
+    if ([KMHTMLChannelManager sharedManager].channels.count==0)
+    {
+        NSString *file = [[NSBundle mainBundle] pathForResource:@"genre" ofType:@"plist"];
+        NSArray *genreChannelArray = [NSArray arrayWithContentsOfFile:file];
+
+        for (NSDictionary *genreChannelData in genreChannelArray)
         {
-            KMRSSChannel* rssChannel;
-            rssChannel = [[KMRSSChannel alloc]init];
-            [[KMRSSChannelManager sharedManager]addChannel:rssChannel];
-            rssChannel.title = [rssChannelData objectForKey:@"title"];
-            rssChannel.feedUrlString = [rssChannelData objectForKey:@"feedUrlString"];
+            KMHTMLChannel* htmlChannel;
+            htmlChannel = [[KMHTMLChannel alloc]init];
+            [[KMHTMLChannelManager sharedManager]addChannel:htmlChannel];
+            htmlChannel.title = [genreChannelData objectForKey:@"title"];
+            htmlChannel.feedUrlString = [genreChannelData objectForKey:@"feedUrlString"];
         }
-        [[KMRSSChannelManager sharedManager]save];
+        [[KMHTMLChannelManager sharedManager]save];
     }
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -58,7 +58,7 @@
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
     
     NSArray*    channels;
-    channels = [KMRSSChannelManager sharedManager].channels;
+    channels = [KMHTMLChannelManager sharedManager].channels;
     if ([self.tableView numberOfRowsInSection:0] != [channels count]) {
         [self.tableView reloadData];
         // 最後の行を表示する
@@ -82,11 +82,11 @@
     NSNotificationCenter*   center;
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
-                   name:RSSConnectorDidBeginRefreshAllChannels object:nil];
+                   name:HTMLConnectorDidBeginRefreshAllChannels object:nil];
     [center addObserver:self selector:@selector(connectorInProgressRefreshAllChannels:)
-                   name:RSSConnectorInProgressRefreshAllChannels object:nil];
+                   name:HTMLConnectorInProgressRefreshAllChannels object:nil];
     [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
-                   name:RSSConnectorDidFinishRefreshAllChannels object:nil];
+                   name:HTMLConnectorDidFinishRefreshAllChannels object:nil];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -96,8 +96,8 @@
 
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    KMRSSChannel* channel =[[KMRSSChannelManager sharedManager].channels objectAtIndex:indexPath.row];
-    cell.textLabel.text = channel.title;
+    KMHTMLChannel* hchannel = [[KMHTMLChannelManager sharedManager].channels objectAtIndex:indexPath.row];
+    cell.textLabel.text = hchannel.title;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -114,7 +114,7 @@
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [KMRSSChannelManager sharedManager].channels.count;
+    return [KMHTMLChannelManager sharedManager].channels.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -122,7 +122,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"rootCell";
+    static NSString *CellIdentifier = @"genreRootCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -137,16 +137,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray*    channels;
-    KMRSSChannel* channel = nil;
-    channels = [KMRSSChannelManager sharedManager].channels;
+    KMHTMLChannel* channel = nil;
+    channels = [KMHTMLChannelManager sharedManager].channels;
     if (indexPath.row < [channels count]) {
         channel = [channels objectAtIndex:indexPath.row];
     }
     if (!channel) {
         return;
     }
-    KMRSSItemListTableViewController*  controller;
-    controller = [[KMRSSItemListTableViewController alloc] init];
+    KMHTMLItemListTableViewController*  controller;
+    controller = [[KMHTMLItemListTableViewController alloc] init];
     controller.channel = channel;
     controller.delegate = self;
     
@@ -154,7 +154,7 @@
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"\n\n\nチャンネル";//中央寄せ
+    return @"ジャンル";
 }
 
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
@@ -172,7 +172,7 @@
 {
     // 進捗を取得する
     float   progress;
-    progress = [[KMRSSConnector sharedConnector] progressOfRefreshAllChannels];
+    progress = [[KMHTMLConnector sharedConnector] progressOfRefreshAllChannels];
     
     // アクションシートのタイトルを更新する
     _refreshAllChannelsSheet.title =

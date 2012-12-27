@@ -20,6 +20,7 @@
 - (void)addChannel:(KMTOPICChannel*)channel;
 - (void)insertChannel:(KMTOPICChannel*)channel atIndex:(unsigned int)index;
 - (void)removeChannelAtIndex:(unsigned int)index;
+- (void)removeAllChannel;
 - (void)moveChannelAtIndex:(unsigned int)fromIndex toIndex:(unsigned int)toIndex;
 - (void)load;
 - (void)save;
