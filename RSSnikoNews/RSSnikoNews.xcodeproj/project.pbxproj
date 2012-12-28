@@ -173,26 +173,64 @@
 		3406F1AA1682CE1E004BDDFD /* control */ = {
 			isa = PBXGroup;
 			children = (
+				3465E2EF168D217F00AA2B12 /* RSS */,
+				3465E2F1168D218E00AA2B12 /* TOPIC */,
+				3465E2F2168D219600AA2B12 /* HTML */,
+			);
+			name = control;
+			sourceTree = "<group>";
+		};
+		3465E2EF168D217F00AA2B12 /* RSS */ = {
+			isa = PBXGroup;
+			children = (
 				34C5765316819CEA003CF1A7 /* KMRootTableViewController.h */,
 				34C5765416819CEA003CF1A7 /* KMRootTableViewController.m */,
 				3406F1AB1682DDB7004BDDFD /* KMRSSItemListTableViewController.h */,
 				3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */,
 				3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */,
 				3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */,
-				347B424B1689D802003755C3 /* KMHTMLContentViewController.h */,
-				347B424C1689D802003755C3 /* KMHTMLContentViewController.m */,
-				34EA6DAA16843239001EA040 /* KMHTMLItemListTableViewController.h */,
-				34EA6DAB16843239001EA040 /* KMHTMLItemListTableViewController.m */,
+			);
+			name = RSS;
+			sourceTree = "<group>";
+		};
+		3465E2F1168D218E00AA2B12 /* TOPIC */ = {
+			isa = PBXGroup;
+			children = (
 				3469958D1689EB540068F7D3 /* KMTOPICContentViewController.h */,
 				3469958E1689EB540068F7D3 /* KMTOPICContentViewController.m */,
 				3469958F1689EB540068F7D3 /* KMTOPICItemListTableViewController.h */,
 				346995901689EB540068F7D3 /* KMTOPICItemListTableViewController.m */,
-				3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */,
-				3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */,
 				3465E2E2168BD39100AA2B12 /* KMTOPICRootTableViewController.m */,
 				3465E2E3168BD39200AA2B12 /* KMTOPICRootTableViewController.h */,
 			);
-			name = control;
+			name = TOPIC;
+			sourceTree = "<group>";
+		};
+		3465E2F2168D219600AA2B12 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */,
+				3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */,
+				347B424B1689D802003755C3 /* KMHTMLContentViewController.h */,
+				347B424C1689D802003755C3 /* KMHTMLContentViewController.m */,
+				34EA6DAA16843239001EA040 /* KMHTMLItemListTableViewController.h */,
+				34EA6DAB16843239001EA040 /* KMHTMLItemListTableViewController.m */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
+		3465E2F3168D221D00AA2B12 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				34EA6D8A16840A3B001EA040 /* icon.png */,
+				34C5762716819810003CF1A7 /* Default.png */,
+				34C5762916819810003CF1A7 /* Default@2x.png */,
+				34C5762B16819810003CF1A7 /* Default-568h@2x.png */,
+				3465E2DA168AD72200AA2B12 /* genre.png */,
+				3465E2DB168AD72200AA2B12 /* rss.png */,
+				3465E2E5168C3FD200AA2B12 /* topic.png */,
+			);
+			name = image;
 			sourceTree = "<group>";
 		};
 		3469957C1689E9400068F7D3 /* TOPIC */ = {
@@ -262,18 +300,12 @@
 			isa = PBXGroup;
 			children = (
 				34C5761D1681980F003CF1A7 /* RSSnikoNews-Info.plist */,
+				3465E2F3168D221D00AA2B12 /* image */,
 				34699593168A8D330068F7D3 /* rss.plist */,
 				34699595168A91400068F7D3 /* genre.plist */,
-				34EA6D8A16840A3B001EA040 /* icon.png */,
 				34C5761E1681980F003CF1A7 /* InfoPlist.strings */,
 				34C576211681980F003CF1A7 /* main.m */,
 				34C576231681980F003CF1A7 /* RSSnikoNews-Prefix.pch */,
-				34C5762716819810003CF1A7 /* Default.png */,
-				34C5762916819810003CF1A7 /* Default@2x.png */,
-				34C5762B16819810003CF1A7 /* Default-568h@2x.png */,
-				3465E2DA168AD72200AA2B12 /* genre.png */,
-				3465E2DB168AD72200AA2B12 /* rss.png */,
-				3465E2E5168C3FD200AA2B12 /* topic.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
