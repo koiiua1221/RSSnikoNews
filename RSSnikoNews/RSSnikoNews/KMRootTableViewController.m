@@ -166,6 +166,7 @@
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
 }
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
@@ -177,9 +178,11 @@
     // アクションシートのタイトルを更新する
     _refreshAllChannelsSheet.title =
     [NSString stringWithFormat:@"Refreshing all channels… %d", (int)(progress * 100)];
+
 }
 
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
 }
 @end

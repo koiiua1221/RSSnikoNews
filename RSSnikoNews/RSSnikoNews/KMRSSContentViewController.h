@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class KMRSSItem;
 
-@interface KMRSSContentViewController : UIViewController
+@interface KMRSSContentViewController : UIViewController<UIWebViewDelegate>
 {
     KMRSSItem*    _item;
     UIWebView* _webView;

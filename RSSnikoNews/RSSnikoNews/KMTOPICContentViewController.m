@@ -32,8 +32,10 @@
 	// Do any additional setup after loading the view.
     CGRect bounds = [[UIScreen mainScreen]bounds];
     _webView = [[UIWebView alloc]initWithFrame:bounds];
+    _webView.delegate = self;
     [self.view addSubview:_webView];
     [self _updateTOPICContent];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +52,15 @@
     NSURL *url = [NSURL URLWithString:_item.link];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:req];
+    _webView.scalesPageToFit=YES;
     return;
+}
+-(void)webViewDidStartLoad:(UIWebView*)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+// ページ読込完了時にインジケータを非表示にする
+-(void)webViewDidFinishLoad:(UIWebView*)webView{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 @end

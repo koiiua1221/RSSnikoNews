@@ -30,7 +30,7 @@
 		<key>title</key>
 		<string>スポーツ</string>
 		<key>feedUrlString</key>
-		<string>&quot;http://news.nicovideo.jp/tag/%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84</string>
+		<string>http://news.nicovideo.jp/tag/%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%84</string>
 	</dict>
 	<dict>
 		<key>title</key>

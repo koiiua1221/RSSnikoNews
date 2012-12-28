@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class KMHTMLItem;
 
-@interface KMHTMLContentViewController : UIViewController
+@interface KMHTMLContentViewController : UIViewController<UIWebViewDelegate>
 {
     KMHTMLItem*    _item;
     UIWebView* _webView;

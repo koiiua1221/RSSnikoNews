@@ -36,30 +36,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.view addSubview:_indicator];
     [self initTOPICChannel];
-    [[KMTOPICConnector sharedConnector]refreshAllChannels];
+//    [[KMTOPICConnector sharedConnector]refreshAllChannels];
 }
 - (void)initTOPICChannel {
     
     [[KMTOPICChannelManager sharedManager] removeAllChannel];
     [self parse];
-/*
-    if ([KMTOPICChannelManager sharedManager].channels.count==0)
-    {
-        NSString *file = [[NSBundle mainBundle] pathForResource:@"genre" ofType:@"plist"];
-        NSArray *genreChannelArray = [NSArray arrayWithContentsOfFile:file];
-
-        for (NSDictionary *genreChannelData in genreChannelArray)
-        {
-            KMTOPICChannel* TOPICChannel;
-            TOPICChannel = [[KMTOPICChannel alloc]init];
-            [[KMTOPICChannelManager sharedManager]addChannel:TOPICChannel];
-            TOPICChannel.title = [genreChannelData objectForKey:@"title"];
-            TOPICChannel.feedUrlString = [genreChannelData objectForKey:@"feedUrlString"];
-        }
-        [[KMTOPICChannelManager sharedManager]save];
-    }
-*/
 }
 - (void)parse
 {
@@ -77,9 +62,11 @@
 
     // NSURLConnectionオブジェクトの作成
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     
     // ネットワークアクセス状態の設定
     _networkState = TOPICNetworkStateInProgress;
+//    [_indicator startAnimating];
 }
 #pragma mark -- NSURLConnectionDelegate --
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
@@ -129,6 +116,8 @@
     }
     _networkState = TOPICNetworkStateFinished;
     _connection = nil;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+//    [_indicator stopAnimating];
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
@@ -141,6 +130,8 @@
     }
 */    
     _connection = nil;
+//    [_indicator stopAnimating];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -171,6 +162,7 @@
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
     }
+/*
     NSNotificationCenter*   center;
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
@@ -179,6 +171,7 @@
                    name:TOPICConnectorInProgressRefreshAllChannels object:nil];
     [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
                    name:TOPICConnectorDidFinishRefreshAllChannels object:nil];
+*/
 }
 - (void)didReceiveMemoryWarning
 {
@@ -248,7 +241,7 @@
 {
     return @"\n\n\nトピック";
 }
-
+/*
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
@@ -262,11 +255,9 @@
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
 {
-    // 進捗を取得する
     float   progress;
     progress = [[KMTOPICConnector sharedConnector] progressOfRefreshAllChannels];
     
-    // アクションシートのタイトルを更新する
     _refreshAllChannelsSheet.title =
     [NSString stringWithFormat:@"Refreshing all channels… %d", (int)(progress * 100)];
 }
@@ -274,4 +265,5 @@
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
 }
+*/
 @end

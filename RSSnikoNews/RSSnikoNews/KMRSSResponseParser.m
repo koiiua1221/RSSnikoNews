@@ -57,7 +57,7 @@
     
     // NSURLConnectionオブジェクトの作成
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
-    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     // ネットワークアクセス状態の設定
     _networkState = RSSNetworkStateInProgress;
 }
@@ -128,6 +128,8 @@
     }
     
     _connection = nil;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error

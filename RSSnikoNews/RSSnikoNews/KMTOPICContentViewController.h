@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class KMTOPICItem;
 
-@interface KMTOPICContentViewController : UIViewController
+@interface KMTOPICContentViewController : UIViewController<UIWebViewDelegate>
 {
     KMTOPICItem*    _item;
     UIWebView* _webView;
