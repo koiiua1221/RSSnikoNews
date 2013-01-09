@@ -46,6 +46,14 @@
     tabItem3.image = [UIImage imageNamed:@"topic.png"];
 
     [window addSubview:tabBarController.view];
+
+#if 1
+    UITabBarController *controller = self.tabBarController;
+    controller.selectedViewController = [controller.viewControllers objectAtIndex: 0];
+
+#endif
+    
+    
     [window makeKeyAndVisible];
 
 //    sleep(1.5f);

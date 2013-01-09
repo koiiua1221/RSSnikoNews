@@ -17,6 +17,7 @@
     NSURLConnection*    _connection;
     KMTOPICChannel*       _parsedChannel;
     UIActivityIndicatorView* _indicator;
+    BOOL _isDownloaded;
 }
 @property (nonatomic, readonly) int networkState;
 @property (nonatomic, readonly) NSData* downloadedData;

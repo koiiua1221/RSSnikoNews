@@ -33,7 +33,14 @@
 {
     [super viewDidLoad];
     [self initHTMLChannel];
-    [[KMHTMLConnector sharedConnector]refreshAllChannels];    
+    NSNotificationCenter*   center;
+    center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
+                   name:HTMLConnectorDidBeginRefreshAllChannels object:nil];
+    [center addObserver:self selector:@selector(connectorInProgressRefreshAllChannels:)
+                   name:HTMLConnectorInProgressRefreshAllChannels object:nil];
+    [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
+                   name:HTMLConnectorDidFinishRefreshAllChannels object:nil];
 }
 - (void)initHTMLChannel {
     if ([KMHTMLChannelManager sharedManager].channels.count==0)
@@ -80,14 +87,14 @@
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
     }
-    NSNotificationCenter*   center;
-    center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
-                   name:HTMLConnectorDidBeginRefreshAllChannels object:nil];
-    [center addObserver:self selector:@selector(connectorInProgressRefreshAllChannels:)
-                   name:HTMLConnectorInProgressRefreshAllChannels object:nil];
-    [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
-                   name:HTMLConnectorDidFinishRefreshAllChannels object:nil];
+    float   progress;
+    progress = [[KMHTMLConnector sharedConnector] progressOfRefreshAllChannels];
+
+    if (!_isDownloaded) {
+        [[KMHTMLConnector sharedConnector]refreshAllChannels];
+        _isDownloaded=YES;
+    }
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -166,12 +173,14 @@
                                 cancelButtonTitle:@"Cancel"
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
-    [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    [_refreshAllChannelsSheet showInView:self.view];
+    //    [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
+    //    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
 }
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
 {
+/*
     // 進捗を取得する
     float   progress;
     progress = [[KMHTMLConnector sharedConnector] progressOfRefreshAllChannels];
@@ -179,11 +188,14 @@
     // アクションシートのタイトルを更新する
     _refreshAllChannelsSheet.title =
     [NSString stringWithFormat:@"Refreshing all channels… %d", (int)(progress * 100)];
+*/
 }
 
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+    // アクションシートを隠す
+    [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
+    _refreshAllChannelsSheet = nil;
 }
 - (void)_updateNetworkActivity
 {

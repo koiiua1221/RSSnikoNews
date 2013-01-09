@@ -37,14 +37,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [self.view addSubview:_indicator];
-    [self initTOPICChannel];
+//    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    [self.view addSubview:_indicator];
+//    [self initTOPICChannel];
 //    [[KMTOPICConnector sharedConnector]refreshAllChannels];
 }
 - (void)initTOPICChannel {
     
     [[KMTOPICChannelManager sharedManager] removeAllChannel];
+    _refreshAllChannelsSheet = [[UIActionSheet alloc]
+                                initWithTitle:@"Refreshing all channels…"
+                                delegate:self
+                                cancelButtonTitle:@"Cancel"
+                                destructiveButtonTitle:nil
+                                otherButtonTitles:nil];
+    [_refreshAllChannelsSheet showInView:self.view];
     [self parse];
 }
 - (void)parse
@@ -117,7 +124,13 @@
     }
     _networkState = TOPICNetworkStateFinished;
     _connection = nil;
-    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+
+    [self.tableView reloadData];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    // アクションシートを隠す
+    [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
+    _refreshAllChannelsSheet = nil;
+
 //    [_indicator stopAnimating];
 }
 
@@ -141,6 +154,11 @@
     
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
     
+    if (!_isDownloaded) {
+        [self initTOPICChannel];
+        _isDownloaded=YES;
+    }
+    
     NSArray*    channels;
     channels = [KMTOPICChannelManager sharedManager].channels;
     if ([self.tableView numberOfRowsInSection:0] != [channels count]) {
@@ -163,7 +181,6 @@
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
     }
-/*
     NSNotificationCenter*   center;
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
@@ -172,7 +189,6 @@
                    name:TOPICConnectorInProgressRefreshAllChannels object:nil];
     [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
                    name:TOPICConnectorDidFinishRefreshAllChannels object:nil];
-*/
 }
 - (void)didReceiveMemoryWarning
 {
@@ -242,7 +258,19 @@
 {
     return @"\n\n\nトピック";
 }
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    NSInteger cellnum = [KMTOPICChannelManager sharedManager].channels.count;
+    
+    if (indexPath.row >= cellnum) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+
+}
 /*
+ [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+ */
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
@@ -266,7 +294,6 @@
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
 }
-*/
 - (void)_updateNetworkActivity
 {
     // ネットワークアクティビティを更新する

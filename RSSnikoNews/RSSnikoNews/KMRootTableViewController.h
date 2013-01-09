@@ -11,5 +11,6 @@
 @interface KMRootTableViewController : UITableViewController<UIActionSheetDelegate>
 {
     UIActionSheet*  _refreshAllChannelsSheet;
+    BOOL _isDownloaded;
 }
 @end
