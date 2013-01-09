@@ -48,7 +48,7 @@
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 
-    sleep(1.5f);
+//    sleep(1.5f);
     return YES;
 }
 

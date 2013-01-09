@@ -24,6 +24,7 @@
         // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"ジャンル別 News";
+        [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -184,4 +185,15 @@
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
 }
-@end
+- (void)_updateNetworkActivity
+{
+    // ネットワークアクティビティを更新する
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    [KMHTMLConnector sharedConnector].networkAccessing;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"networkAccessing"]) {
+        [self _updateNetworkActivity];
+    }
+}@end

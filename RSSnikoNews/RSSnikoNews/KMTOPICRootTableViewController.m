@@ -29,6 +29,7 @@
         // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"トピック別 News";
+        [[KMTOPICConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -61,8 +62,8 @@
     _downloadedData = [NSMutableData data];
 
     // NSURLConnectionオブジェクトの作成
-    _connection = [NSURLConnection connectionWithRequest:request delegate:self];
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
+    _connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
     // ネットワークアクセス状態の設定
     _networkState = TOPICNetworkStateInProgress;
@@ -266,4 +267,16 @@
 {
 }
 */
+- (void)_updateNetworkActivity
+{
+    // ネットワークアクティビティを更新する
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    [KMTOPICConnector sharedConnector].networkAccessing;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"networkAccessing"]) {
+        [self _updateNetworkActivity];
+    }
+}
 @end

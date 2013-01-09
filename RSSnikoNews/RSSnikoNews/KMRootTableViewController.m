@@ -24,6 +24,7 @@
         // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"RSS別 News";
+        [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -184,5 +185,17 @@
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+}
+- (void)_updateNetworkActivity
+{
+    // ネットワークアクティビティを更新する
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    [KMRSSConnector sharedConnector].networkAccessing;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"networkAccessing"]) {
+        [self _updateNetworkActivity];
+    }
 }
 @end
