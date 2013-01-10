@@ -46,9 +46,9 @@
     
     [[KMTOPICChannelManager sharedManager] removeAllChannel];
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
-                                initWithTitle:@"Refreshing all channels…"
+                                initWithTitle:@"ダウンロード中…"
                                 delegate:self
-                                cancelButtonTitle:@"Cancel"
+                                cancelButtonTitle:@"キャンセル"
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showInView:self.view];
@@ -256,7 +256,7 @@
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"\n\n\nトピック";
+    return @"トピック";
 }
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
 {
@@ -274,9 +274,9 @@
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
-                                initWithTitle:@"Refreshing all channels…"
+                                initWithTitle:@"ダウンロード中…"
                                 delegate:self
-                                cancelButtonTitle:@"Cancel"
+                                cancelButtonTitle:@"キャンセル"
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
