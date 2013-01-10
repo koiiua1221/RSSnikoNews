@@ -64,6 +64,8 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
+    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
+    self.navigationItem.rightBarButtonItem = reloadButton;
     
     NSArray*    channels;
     channels = [KMRSSChannelManager sharedManager].channels;
@@ -91,6 +93,12 @@
         [[KMRSSConnector sharedConnector]refreshAllChannels];
         _isDownloaded=YES;
     }
+
+}
+- (void)reloadChannel
+{
+    [[KMRSSConnector sharedConnector]refreshAllChannels];
+    _isDownloaded=YES;
 
 }
 - (void)didReceiveMemoryWarning
@@ -170,7 +178,7 @@
                                 cancelButtonTitle:@"キャンセル"
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
-    [_refreshAllChannelsSheet showInView:self.view];
+    [_refreshAllChannelsSheet showFromTabBar:self.tabBarController.tabBar];
 //    [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
 //    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
 }
@@ -207,5 +215,11 @@
     if ([keyPath isEqualToString:@"networkAccessing"]) {
         [self _updateNetworkActivity];
     }
+}
+
+-(void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    [[KMRSSConnector sharedConnector] cancelRefreshAllChannels];
 }
 @end

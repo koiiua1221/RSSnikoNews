@@ -64,6 +64,8 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
+    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
+    self.navigationItem.rightBarButtonItem = reloadButton;
     
     NSArray*    channels;
     channels = [KMHTMLChannelManager sharedManager].channels;
@@ -87,14 +89,17 @@
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
     }
-    float   progress;
-    progress = [[KMHTMLConnector sharedConnector] progressOfRefreshAllChannels];
-
     if (!_isDownloaded) {
         [[KMHTMLConnector sharedConnector]refreshAllChannels];
         _isDownloaded=YES;
     }
 
+}
+- (void)reloadChannel
+{
+    [[KMHTMLConnector sharedConnector]refreshAllChannels];
+    _isDownloaded=YES;
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -173,7 +178,8 @@
                                 cancelButtonTitle:@"キャンセル"
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
-    [_refreshAllChannelsSheet showInView:self.view];
+//    [_refreshAllChannelsSheet showInView:self.view];
+    [_refreshAllChannelsSheet showFromTabBar:self.tabBarController.tabBar];
     //    [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
     //    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
 }
@@ -208,4 +214,11 @@
     if ([keyPath isEqualToString:@"networkAccessing"]) {
         [self _updateNetworkActivity];
     }
-}@end
+}
+-(void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    [[KMHTMLConnector sharedConnector] cancelRefreshAllChannels];
+}
+
+@end

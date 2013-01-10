@@ -72,6 +72,8 @@
 		3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSItemListTableViewController.m; sourceTree = "<group>"; };
 		3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSContentViewController.h; sourceTree = "<group>"; };
 		3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSContentViewController.m; sourceTree = "<group>"; };
+		34344255169E63460043E7D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34344256169E63460043E7D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMGenreRootTableViewController.m; sourceTree = "<group>"; };
 		3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMGenreRootTableViewController.h; sourceTree = "<group>"; };
 		3465E2DA168AD72200AA2B12 /* genre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = genre.png; sourceTree = "<group>"; };
@@ -106,7 +108,6 @@
 		34C576171681980F003CF1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		34C576191681980F003CF1A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		34C5761D1681980F003CF1A7 /* RSSnikoNews-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSnikoNews-Info.plist"; sourceTree = "<group>"; };
-		34C5761F1681980F003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34C576211681980F003CF1A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		34C576231681980F003CF1A7 /* RSSnikoNews-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RSSnikoNews-Prefix.pch"; sourceTree = "<group>"; };
 		34C576241681980F003CF1A7 /* KMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KMAppDelegate.h; sourceTree = "<group>"; };
@@ -117,7 +118,6 @@
 		34C5763B16819810003CF1A7 /* RSSnikoNewsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSnikoNewsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C5763C16819810003CF1A7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		34C5764416819810003CF1A7 /* RSSnikoNewsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RSSnikoNewsTests-Info.plist"; sourceTree = "<group>"; };
-		34C5764616819810003CF1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34C5764816819810003CF1A7 /* RSSnikoNewsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSnikoNewsTests.h; sourceTree = "<group>"; };
 		34C5764916819810003CF1A7 /* RSSnikoNewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSnikoNewsTests.m; sourceTree = "<group>"; };
 		34C5765316819CEA003CF1A7 /* KMRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRootTableViewController.h; sourceTree = "<group>"; };
@@ -332,8 +332,8 @@
 		34C576591681BFD5003CF1A7 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				3469957C1689E9400068F7D3 /* TOPIC */,
 				34EA6D99168421FC001EA040 /* RSS */,
+				3469957C1689E9400068F7D3 /* TOPIC */,
 				34EA6D9A16842215001EA040 /* HTML */,
 			);
 			name = model;
@@ -428,6 +428,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ja,
 			);
 			mainGroup = 34C576061681980F003CF1A7;
 			productRefGroup = 34C576121681980F003CF1A7 /* Products */;
@@ -541,7 +542,7 @@
 		34C5761E1681980F003CF1A7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				34C5761F1681980F003CF1A7 /* en */,
+				34344255169E63460043E7D6 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -549,7 +550,7 @@
 		34C5764516819810003CF1A7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				34C5764616819810003CF1A7 /* en */,
+				34344256169E63460043E7D6 /* ja */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -617,7 +618,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSnikoNews/RSSnikoNews-Prefix.pch";
 				INFOPLIST_FILE = "RSSnikoNews/RSSnikoNews-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -628,7 +631,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSSnikoNews/RSSnikoNews-Prefix.pch";
 				INFOPLIST_FILE = "RSSnikoNews/RSSnikoNews-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

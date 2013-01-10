@@ -121,6 +121,31 @@ static KMHTMLConnector*    _sharedInstance = nil;
     
     return (float)doneCount / [_refreshAllChannelParsers count];;
 }
+- (void)cancelRefreshAllChannels
+{
+    // すべてのパーサをキャンセルする
+    for (KMHTMLResponseParser* parser in _refreshAllChannelParsers) {
+        [parser cancel];
+        if ([_refreshAllChannelParsers count]==0) {
+            break;
+        }
+    }
+    
+    // userInfoの作成
+    NSMutableDictionary*    userInfo;
+    userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:_refreshAllChannelParsers forKey:@"parsers"];
+    
+    // 通知
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:HTMLConnectorDidFinishRefreshAllChannels
+     object:self userInfo:userInfo];
+    
+    // networkAccessingの値の変更を通知する
+    [self willChangeValueForKey:@"networkAccessing"];
+    [_refreshAllChannelParsers removeAllObjects];
+    [self didChangeValueForKey:@"networkAccessing"];
+}
 
 #pragma mark -- HTMLResponseParserDelegate --
 - (void)_notifyRetriveTitleStatusWithParser:(KMHTMLResponseParser*)parser

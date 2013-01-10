@@ -25,5 +25,5 @@ extern NSString*    HTMLConnectorDidFinishRefreshAllChannels;
 - (BOOL)isRefreshingAllChannels;
 - (void)refreshAllChannels;
 - (float)progressOfRefreshAllChannels;
-
+- (void)cancelRefreshAllChannels;
 @end

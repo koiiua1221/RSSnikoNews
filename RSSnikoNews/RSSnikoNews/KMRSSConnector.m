@@ -121,7 +121,31 @@ static KMRSSConnector*    _sharedInstance = nil;
     
     return (float)doneCount / [_refreshAllChannelParsers count];;
 }
-
+- (void)cancelRefreshAllChannels
+{
+    // すべてのパーサをキャンセルする
+    for (KMRSSResponseParser* parser in _refreshAllChannelParsers) {
+        [parser cancel];
+        if ([_refreshAllChannelParsers count]==0) {
+            break;
+        }
+    }
+    
+    // userInfoの作成
+    NSMutableDictionary*    userInfo;
+    userInfo = [NSMutableDictionary dictionary];
+    [userInfo setObject:_refreshAllChannelParsers forKey:@"parsers"];
+    
+    // 通知
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:RSSConnectorDidFinishRefreshAllChannels
+     object:self userInfo:userInfo];
+    
+    // networkAccessingの値の変更を通知する
+    [self willChangeValueForKey:@"networkAccessing"];
+    [_refreshAllChannelParsers removeAllObjects];
+    [self didChangeValueForKey:@"networkAccessing"];
+}
 #pragma mark -- RSSResponseParserDelegate --
 - (void)_notifyRetriveTitleStatusWithParser:(KMRSSResponseParser*)parser
 {

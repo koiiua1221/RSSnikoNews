@@ -19,11 +19,13 @@ extern NSString*    RSSConnectorDidFinishRefreshAllChannels;
     NSMutableArray* _retrieveTitleParsers;
     NSMutableArray* _refreshAllChannelParsers;
 }
+
 @property (nonatomic, readonly, getter=isNetworkAccessing) BOOL networkAccessing;
 + (KMRSSConnector*)sharedConnector;
 - (void)retrieveTitleWithUrlString:(NSString*)urlString;
 - (BOOL)isRefreshingAllChannels;
 - (void)refreshAllChannels;
 - (float)progressOfRefreshAllChannels;
+- (void)cancelRefreshAllChannels;
 
 @end
