@@ -20,7 +20,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"保存した News";
+        self.title = @"保存News";
     }
     return self;
 }

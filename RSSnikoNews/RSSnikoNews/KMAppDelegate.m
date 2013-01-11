@@ -11,6 +11,7 @@
 #import "KMGenreRootTableViewController.h"
 #import "KMTOPICRootTableViewController.h"
 #import "KMSaveItemTableViewController.h"
+#import "KMAboutViewController.h"
 
 @implementation KMAppDelegate
 @synthesize window;
@@ -37,7 +38,11 @@
     saveItemView = [[KMSaveItemTableViewController alloc]initWithStyle:UITableViewStylePlain];
     saveItemRootController_ = [[UINavigationController alloc]initWithRootViewController:saveItemView];
     [viewControllers addObject:saveItemRootController_];
-    
+
+    aboutView = [[KMAboutViewController alloc]init];
+    aboutRootController_ = [[UINavigationController alloc]initWithRootViewController:aboutView];
+    [viewControllers addObject:aboutRootController_];
+
     tabBarController = [[UITabBarController alloc]init];
     tabBarController.viewControllers = viewControllers;
 
@@ -50,6 +55,8 @@
     tabItem3.image = [UIImage imageNamed:@"topic.png"];
     UITabBarItem *tabItem4 = [tabItemAry objectAtIndex:3];
     tabItem4.image = [UIImage imageNamed:@"saved.png"];
+    UITabBarItem *tabItem5 = [tabItemAry objectAtIndex:4];
+    tabItem5.image = [UIImage imageNamed:@"about.png"];
 
     [window addSubview:tabBarController.view];
 

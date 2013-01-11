@@ -22,7 +22,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
-        self.title = @"ジャンル別 News";
+        self.title = @"ジャンル別";
         [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;

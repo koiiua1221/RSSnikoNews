@@ -27,7 +27,7 @@
     self = [super initWithStyle:style];
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
-        self.title = @"トピック別 News";
+        self.title = @"トピック別";
         [[KMTOPICConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
