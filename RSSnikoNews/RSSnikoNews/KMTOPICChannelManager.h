@@ -14,7 +14,7 @@
     NSMutableArray* _channels;
 }
 
-@property (nonatomic, readonly) NSArray* channels;
+@property (nonatomic, readwrite) NSMutableArray* channels;
 
 + (KMTOPICChannelManager*)sharedManager;
 - (void)addChannel:(KMTOPICChannel*)channel;

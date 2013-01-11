@@ -40,6 +40,7 @@
 - (void)initTOPICChannel {
     
     [[KMTOPICChannelManager sharedManager] removeAllChannel];
+    [self.tableView reloadData];
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
                                 initWithTitle:@"ダウンロード中…"
                                 delegate:self
@@ -132,6 +133,8 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
+    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
+    self.navigationItem.rightBarButtonItem = reloadButton;
     
     if (!_isDownloaded) {
         [self initTOPICChannel];
@@ -169,6 +172,14 @@
     [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
                    name:TOPICConnectorDidFinishRefreshAllChannels object:nil];
 }
+- (void)reloadChannel
+{
+//    [[KMTOPICChannelManager sharedManager].channels removeAllObjects];
+    [self initTOPICChannel];
+    _isDownloaded=YES;
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
