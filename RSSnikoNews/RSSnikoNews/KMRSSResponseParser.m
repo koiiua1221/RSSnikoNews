@@ -33,7 +33,6 @@
 }
 - (void)parse
 {
-    // リクエストの作成
     NSURLRequest*   request = nil;
     if (_feedUrlString) {
         NSURL*  url;
@@ -42,23 +41,17 @@
             request = [NSURLRequest requestWithURL:url];
         }
     }
-    
     if (!request) {
         return;
     }
     
-    // データバッファの作成
     _downloadedData = nil;
     _downloadedData = [NSMutableData data];
     
-    // パース済みチャンネルを作成する
     _parsedChannel = nil;
     _parsedChannel = [[KMRSSChannel alloc] init];
     
-    // NSURLConnectionオブジェクトの作成
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
-    // ネットワークアクセス状態の設定
     _networkState = RSSNetworkStateInProgress;
 }
 - (void)cancel
@@ -76,7 +69,6 @@
 #pragma mark -- NSURLConnectionDelegate --
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response
 {
-    // デリゲートに通知
     if ([_delegate respondsToSelector:@selector(parser:didReceiveResponse:)]) {
         [_delegate parser:self didReceiveResponse:response];
     }
@@ -84,10 +76,8 @@
 
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
-    // ダウンロード済みデータを追加
     [_downloadedData appendData:data];
     
-    // デリゲートに通知
     if ([_delegate respondsToSelector:@selector(parser:didReceiveData:)]) {
         [_delegate parser:self didReceiveData:data];
     }
@@ -95,7 +85,6 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
-    // フラグの初期化
     _foundRss = NO;
     _isRss = NO;
     _isChannel = NO;
@@ -128,8 +117,6 @@
     }
     
     _connection = nil;
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
-
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error

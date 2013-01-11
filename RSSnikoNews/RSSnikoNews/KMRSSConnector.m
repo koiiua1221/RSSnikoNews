@@ -100,15 +100,12 @@ static KMRSSConnector*    _sharedInstance = nil;
 }
 - (float)progressOfRefreshAllChannels
 {
-    // パーサが無い場合
     if ([_refreshAllChannelParsers count] == 0) {
         return 1.0f;
     }
     
-    // 進捗の計算
     int doneCount = 0;
     for (KMRSSResponseParser* parser in _refreshAllChannelParsers) {
-        // ネットワークアクセス状態の確認
         int networkState;
         networkState = parser.networkState;
         if (networkState == RSSNetworkStateFinished ||
@@ -123,7 +120,6 @@ static KMRSSConnector*    _sharedInstance = nil;
 }
 - (void)cancelRefreshAllChannels
 {
-    // すべてのパーサをキャンセルする
     for (KMRSSResponseParser* parser in _refreshAllChannelParsers) {
         [parser cancel];
         if ([_refreshAllChannelParsers count]==0) {
@@ -131,17 +127,14 @@ static KMRSSConnector*    _sharedInstance = nil;
         }
     }
     
-    // userInfoの作成
     NSMutableDictionary*    userInfo;
     userInfo = [NSMutableDictionary dictionary];
     [userInfo setObject:_refreshAllChannelParsers forKey:@"parsers"];
     
-    // 通知
     [[NSNotificationCenter defaultCenter]
      postNotificationName:RSSConnectorDidFinishRefreshAllChannels
      object:self userInfo:userInfo];
     
-    // networkAccessingの値の変更を通知する
     [self willChangeValueForKey:@"networkAccessing"];
     [_refreshAllChannelParsers removeAllObjects];
     [self didChangeValueForKey:@"networkAccessing"];
@@ -149,32 +142,26 @@ static KMRSSConnector*    _sharedInstance = nil;
 #pragma mark -- RSSResponseParserDelegate --
 - (void)_notifyRetriveTitleStatusWithParser:(KMRSSResponseParser*)parser
 {
-    // userInfoの作成
     NSMutableDictionary*    userInfo;
     userInfo = [NSMutableDictionary dictionary];
     [userInfo setObject:parser forKey:@"parser"];
     
-    // 通知する
     [[NSNotificationCenter defaultCenter]
      postNotificationName:RSSConnectorDidFinishRetriveTitle object:self userInfo:userInfo];
     
-    // networkAccessingの値の変更を通知する
     [self willChangeValueForKey:@"networkAccessing"];
     [_retrieveTitleParsers removeObject:parser];
     [self didChangeValueForKey:@"networkAccessing"];
 }
 - (void)_notifyRefreshAllChannelStatus
 {
-    // userInfoの作成
     NSMutableDictionary*    userInfo;
     userInfo = [NSMutableDictionary dictionary];
     [userInfo setObject:_refreshAllChannelParsers forKey:@"parsers"];
     
-    // 進捗の取得
     float   progress;
     progress = [self progressOfRefreshAllChannels];
     
-    // 通知
     NSString*   name;
     if (progress < 1.0f) {
         name = RSSConnectorInProgressRefreshAllChannels;
@@ -185,9 +172,7 @@ static KMRSSConnector*    _sharedInstance = nil;
     [[NSNotificationCenter defaultCenter]
      postNotificationName:name object:self userInfo:userInfo];
     
-    // For did finish
     if (progress == 1.0f) {
-        // networkAccessingの値の変更を通知する
         [self willChangeValueForKey:@"networkAccessing"];
         [_refreshAllChannelParsers removeAllObjects];
         [self didChangeValueForKey:@"networkAccessing"];
@@ -203,14 +188,10 @@ static KMRSSConnector*    _sharedInstance = nil;
 }
 - (void)parserDidFinishLoading:(KMRSSResponseParser*)parser
 {
-    // フィードのタイトル取得の場合
     if ([_retrieveTitleParsers containsObject:parser]) {
-        // 通知
         [self _notifyRetriveTitleStatusWithParser:parser];
     }
-    // 登録したすべてのチャンネルの更新の場合
     else if ([_refreshAllChannelParsers containsObject:parser]) {
-        // パースされたアイテムに対するチャンネルを取得する
         KMRSSChannel* channel = nil;
         for (KMRSSChannel* ch in [KMRSSChannelManager sharedManager].channels) {
             if ([ch.feedUrlString isEqualToString:parser.feedUrlString]) {
@@ -219,38 +200,26 @@ static KMRSSConnector*    _sharedInstance = nil;
                 break;
             }
         }
-        
-        // パースされたアイテムを設定する
         [channel.items setArray:parser.parsedChannel.items];
-        
-        // 通知
         [self _notifyRefreshAllChannelStatus];
     }
 }
 
 - (void)parser:(KMRSSResponseParser*)parser didFailWithError:(NSError*)error
 {
-    // フィードのタイトル取得の場合
     if ([_retrieveTitleParsers containsObject:parser]) {
-        // 通知
         [self _notifyRetriveTitleStatusWithParser:parser];
     }
-    // 登録したすべてのチャンネルの更新の場合
     else if ([_refreshAllChannelParsers containsObject:parser]) {
-        // 通知
         [self _notifyRefreshAllChannelStatus];
     }
 }
 - (void)parserDidCancel:(KMRSSResponseParser*)parser
 {
-    // フィードのタイトル取得の場合
     if ([_retrieveTitleParsers containsObject:parser]) {
-        // 通知
         [self _notifyRetriveTitleStatusWithParser:parser];
     }
-    // 登録したすべてのチャンネルの更新の場合
     else if ([_refreshAllChannelParsers containsObject:parser]) {
-        // 通知
         [self _notifyRefreshAllChannelStatus];
     }
 }

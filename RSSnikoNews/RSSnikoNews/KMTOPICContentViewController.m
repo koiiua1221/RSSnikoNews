@@ -21,7 +21,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -29,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     CGRect bounds = [[UIScreen mainScreen]bounds];
     _webView = [[UIWebView alloc]initWithFrame:bounds];
     _webView.delegate = self;
@@ -41,7 +39,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)_updateTOPICContent
@@ -59,7 +56,6 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
-// ページ読込完了時にインジケータを非表示にする
 -(void)webViewDidFinishLoad:(UIWebView*)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }

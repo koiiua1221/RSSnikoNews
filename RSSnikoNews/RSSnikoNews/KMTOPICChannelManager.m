@@ -64,7 +64,6 @@ static KMTOPICChannelManager*  _sharedInstance = nil;
     if (toIndex > [_channels count]) {
         return;
     }
-    // チャンネルを移動する
     KMTOPICChannel* channel;
     channel = [_channels objectAtIndex:fromIndex];
     [_channels removeObject:channel];

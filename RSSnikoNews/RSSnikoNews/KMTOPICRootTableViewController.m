@@ -26,7 +26,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"トピック別 News";
         [[KMTOPICConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
@@ -37,10 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-//    [self.view addSubview:_indicator];
-//    [self initTOPICChannel];
-//    [[KMTOPICConnector sharedConnector]refreshAllChannels];
 }
 - (void)initTOPICChannel {
     
@@ -56,7 +51,6 @@
 }
 - (void)parse
 {
-    // リクエストの作成
     NSURLRequest*   request = nil;
     NSURL*  url;
     url = [NSURL URLWithString:@"http://news.nicovideo.jp/"];
@@ -68,18 +62,14 @@
     _downloadedData = nil;
     _downloadedData = [NSMutableData data];
 
-    // NSURLConnectionオブジェクトの作成
     [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
     _connection = [NSURLConnection connectionWithRequest:request delegate:self];
     
-    // ネットワークアクセス状態の設定
     _networkState = TOPICNetworkStateInProgress;
-//    [_indicator startAnimating];
 }
 #pragma mark -- NSURLConnectionDelegate --
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
-    // ダウンロード済みデータを追加
     [_downloadedData appendData:data];
 }
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection
@@ -114,9 +104,7 @@
             item.title = [childArray objectForKey:@"nodeContent"];
             item.link =[baseUrl stringByAppendingString:
             [[[childArray objectForKey:@"nodeAttributeArray"]objectAtIndex:0]objectForKey:@"nodeContent"]];
-            //タイトル
             NSLog([childArray objectForKey:@"nodeContent"]);
-            //url
             NSLog([[[childArray objectForKey:@"nodeAttributeArray"]objectAtIndex:0]objectForKey:@"nodeContent"]);            
         }
         [topicChannel.items setArray:items];
@@ -127,24 +115,15 @@
 
     [self.tableView reloadData];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // アクションシートを隠す
     [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
     _refreshAllChannelsSheet = nil;
 
-//    [_indicator stopAnimating];
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
-//    _error = nil;
     _networkState = TOPICNetworkStateError;
-/*
-    if ([_delegate respondsToSelector:@selector(parser:didFailWithError:)]) {
-        [_delegate parser:self didFailWithError:error];
-    }
-*/    
     _connection = nil;
-//    [_indicator stopAnimating];
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
 }
 
@@ -193,7 +172,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
@@ -207,15 +185,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
     return [KMTOPICChannelManager sharedManager].channels.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -229,7 +203,6 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    // Configure the cell...
     [self _updateCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -267,10 +240,6 @@
     }
 
 }
-/*
- [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-
- */
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
@@ -296,7 +265,6 @@
 }
 - (void)_updateNetworkActivity
 {
-    // ネットワークアクティビティを更新する
     [UIApplication sharedApplication].networkActivityIndicatorVisible =
     [KMTOPICConnector sharedConnector].networkAccessing;
 }

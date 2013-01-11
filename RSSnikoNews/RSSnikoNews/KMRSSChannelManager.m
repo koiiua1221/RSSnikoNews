@@ -61,7 +61,6 @@ static KMRSSChannelManager*  _sharedInstance = nil;
     if (toIndex > [_channels count]) {
         return;
     }
-    // チャンネルを移動する
     KMRSSChannel* channel;
     channel = [_channels objectAtIndex:fromIndex];
     [_channels removeObject:channel];

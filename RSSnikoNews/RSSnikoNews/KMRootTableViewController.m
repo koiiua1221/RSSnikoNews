@@ -21,7 +21,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"RSS別 News";
         [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
@@ -71,7 +70,6 @@
     channels = [KMRSSChannelManager sharedManager].channels;
     if ([self.tableView numberOfRowsInSection:0] != [channels count]) {
         [self.tableView reloadData];
-        // 最後の行を表示する
         if ([channels count] > 0) {
             NSIndexPath*    lastIndexPath;
             lastIndexPath = [NSIndexPath indexPathForRow:[channels count] - 1 inSection:0];
@@ -104,7 +102,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
@@ -119,14 +116,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
-    // Return the number of rows in the section.
     return [KMRSSChannelManager sharedManager].channels.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,7 +135,6 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    // Configure the cell...
     [self _updateCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -179,8 +173,6 @@
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showFromTabBar:self.tabBarController.tabBar];
-//    [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible=YES;
 }
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
@@ -198,15 +190,12 @@
 
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
-    // アクションシートを隠す
     [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
     _refreshAllChannelsSheet = nil;
     
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
 }
 - (void)_updateNetworkActivity
 {
-    // ネットワークアクティビティを更新する
     [UIApplication sharedApplication].networkActivityIndicatorVisible =
     [KMRSSConnector sharedConnector].networkAccessing;
 }

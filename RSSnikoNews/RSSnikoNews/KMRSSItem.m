@@ -24,7 +24,6 @@
         return nil;
     }
     
-    // 識別子を作成する
     CFUUIDRef   uuid;
     uuid = CFUUIDCreate(NULL);
     _identifier = (__bridge NSString*)CFUUIDCreateString(NULL, uuid);
@@ -50,7 +49,6 @@
 }
 - (void)encodeWithCoder:(NSCoder*)encoder
 {
-    // インスタンス変数をエンコードする
     [encoder encodeObject:_identifier forKey:@"identifier"];
     [encoder encodeBool:_read forKey:@"read"];
     [encoder encodeObject:_title forKey:@"title"];
