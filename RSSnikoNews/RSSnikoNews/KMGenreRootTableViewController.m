@@ -61,6 +61,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
     
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
     UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];

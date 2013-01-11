@@ -35,6 +35,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
     
     NSIndexPath*    indexPath;
     indexPath = [self.tableView indexPathForSelectedRow];

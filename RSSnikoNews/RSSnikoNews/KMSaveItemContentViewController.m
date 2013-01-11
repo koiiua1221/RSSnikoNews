@@ -1,21 +1,20 @@
 //
-//  KMRSSContentViewController.m
+//  KMSaveItemContentViewController.m
 //  RSSnikoNews
 //
 //  Created by KoujiMiura on 2012/12/20.
 //  Copyright (c) 2012年 KoujiMiura. All rights reserved.
 //
 
-#import "KMRSSContentViewController.h"
-#import "KMRSSItem.h"
+#import "KMSaveItemContentViewController.h"
 #import "KMSaveItemManager.h"
 #import "KMSaveItem.h"
 
-@interface KMRSSContentViewController ()
+@interface KMSaveItemContentViewController ()
 
 @end
 
-@implementation KMRSSContentViewController
+@implementation KMSaveItemContentViewController
 @synthesize item = _item;
 @synthesize delegate = _delegate;
 
@@ -30,8 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItem)];
-    self.navigationItem.rightBarButtonItem = saveButton;
     
     CGRect bounds = [[UIScreen mainScreen]bounds];
     _webView = [[UIWebView alloc]initWithFrame:bounds];
@@ -50,26 +47,12 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
 }
-- (void)saveItem
-{
-    KMSaveItem *saveItem = [[KMSaveItem alloc]init];
-    saveItem.feedUrlString = _item.link;
-    saveItem.title = _item.title;
-    [[KMSaveItemManager sharedManager] addSaveItem:saveItem];
-    [[KMSaveItemManager sharedManager] save];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"完了メッセージ"
-                                                    message:@"記事を保存しました。"
-                                                   delegate:self
-                                          cancelButtonTitle:@"確認"
-                                          otherButtonTitles:nil];
-    [alert show];
-}
 - (void)_updateHTMLContent
 {
     if (!_webView) {
         return;
     }
-    NSURL *url = [NSURL URLWithString:_item.link];
+    NSURL *url = [NSURL URLWithString:_item.feedUrlString];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:req];
     _webView.scalesPageToFit=YES;

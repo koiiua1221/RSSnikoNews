@@ -8,6 +8,8 @@
 
 #import "KMTOPICContentViewController.h"
 #import "KMTOPICItem.h"
+#import "KMSaveItemManager.h"
+#import "KMSaveItem.h"
 
 @interface KMTOPICContentViewController ()
 
@@ -28,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveItem)];
+    self.navigationItem.rightBarButtonItem = saveButton;
     CGRect bounds = [[UIScreen mainScreen]bounds];
     _webView = [[UIWebView alloc]initWithFrame:bounds];
     _webView.delegate = self;
@@ -35,10 +39,29 @@
     [self _updateTOPICContent];
 
 }
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+- (void)saveItem
+{
+    KMSaveItem *saveItem = [[KMSaveItem alloc]init];
+    saveItem.feedUrlString = _item.link;
+    saveItem.title = _item.title;
+    [[KMSaveItemManager sharedManager] addSaveItem:saveItem];
+    [[KMSaveItemManager sharedManager] save];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"完了メッセージ"
+                                                    message:@"記事を保存しました。"
+                                                   delegate:self
+                                          cancelButtonTitle:@"確認"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)_updateTOPICContent

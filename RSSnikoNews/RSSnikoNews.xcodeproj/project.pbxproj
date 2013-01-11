@@ -10,6 +10,11 @@
 		3406F1A51682A42E004BDDFD /* KMRSSResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */; };
 		3406F1AD1682DDB7004BDDFD /* KMRSSItemListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */; };
 		3406F1B01682F52F004BDDFD /* KMRSSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */; };
+		3434425C169FD8390043E7D6 /* KMSaveItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 34344258169FD8390043E7D6 /* KMSaveItemManager.m */; };
+		3434425D169FD8390043E7D6 /* KMSaveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34344259169FD8390043E7D6 /* KMSaveItem.m */; };
+		34344261169FE32C0043E7D6 /* KMSaveItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */; };
+		34344263169FED250043E7D6 /* saved.png in Resources */ = {isa = PBXBuildFile; fileRef = 34344262169FED250043E7D6 /* saved.png */; };
+		3434426E169FF6E10043E7D6 /* KMSaveItemContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434426C169FF6E10043E7D6 /* KMSaveItemContentViewController.m */; };
 		3465E2D7168AC8C700AA2B12 /* KMGenreRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */; };
 		3465E2DC168AD72200AA2B12 /* genre.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2DA168AD72200AA2B12 /* genre.png */; };
 		3465E2DD168AD72200AA2B12 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2DB168AD72200AA2B12 /* rss.png */; };
@@ -74,6 +79,15 @@
 		3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSContentViewController.m; sourceTree = "<group>"; };
 		34344255169E63460043E7D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34344256169E63460043E7D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		34344258169FD8390043E7D6 /* KMSaveItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItemManager.m; sourceTree = "<group>"; };
+		34344259169FD8390043E7D6 /* KMSaveItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItem.m; sourceTree = "<group>"; };
+		3434425A169FD8390043E7D6 /* KMSaveItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSaveItem.h; sourceTree = "<group>"; };
+		3434425B169FD8390043E7D6 /* KMSaveItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSaveItemManager.h; sourceTree = "<group>"; };
+		3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItemTableViewController.m; sourceTree = "<group>"; };
+		34344260169FE32C0043E7D6 /* KMSaveItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSaveItemTableViewController.h; sourceTree = "<group>"; };
+		34344262169FED250043E7D6 /* saved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saved.png; sourceTree = "<group>"; };
+		3434426C169FF6E10043E7D6 /* KMSaveItemContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItemContentViewController.m; sourceTree = "<group>"; };
+		3434426D169FF6E10043E7D6 /* KMSaveItemContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSaveItemContentViewController.h; sourceTree = "<group>"; };
 		3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMGenreRootTableViewController.m; sourceTree = "<group>"; };
 		3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMGenreRootTableViewController.h; sourceTree = "<group>"; };
 		3465E2DA168AD72200AA2B12 /* genre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = genre.png; sourceTree = "<group>"; };
@@ -173,11 +187,34 @@
 		3406F1AA1682CE1E004BDDFD /* control */ = {
 			isa = PBXGroup;
 			children = (
+				3434425E169FE29E0043E7D6 /* SAVEITEM */,
 				3465E2EF168D217F00AA2B12 /* RSS */,
 				3465E2F1168D218E00AA2B12 /* TOPIC */,
 				3465E2F2168D219600AA2B12 /* HTML */,
 			);
 			name = control;
+			sourceTree = "<group>";
+		};
+		34344257169FD70E0043E7D6 /* SAVEITEM */ = {
+			isa = PBXGroup;
+			children = (
+				34344258169FD8390043E7D6 /* KMSaveItemManager.m */,
+				3434425B169FD8390043E7D6 /* KMSaveItemManager.h */,
+				34344259169FD8390043E7D6 /* KMSaveItem.m */,
+				3434425A169FD8390043E7D6 /* KMSaveItem.h */,
+			);
+			name = SAVEITEM;
+			sourceTree = "<group>";
+		};
+		3434425E169FE29E0043E7D6 /* SAVEITEM */ = {
+			isa = PBXGroup;
+			children = (
+				3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */,
+				34344260169FE32C0043E7D6 /* KMSaveItemTableViewController.h */,
+				3434426C169FF6E10043E7D6 /* KMSaveItemContentViewController.m */,
+				3434426D169FF6E10043E7D6 /* KMSaveItemContentViewController.h */,
+			);
+			name = SAVEITEM;
 			sourceTree = "<group>";
 		};
 		3465E2EF168D217F00AA2B12 /* RSS */ = {
@@ -229,6 +266,7 @@
 				3465E2DA168AD72200AA2B12 /* genre.png */,
 				3465E2DB168AD72200AA2B12 /* rss.png */,
 				3465E2E5168C3FD200AA2B12 /* topic.png */,
+				34344262169FED250043E7D6 /* saved.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -332,6 +370,7 @@
 		34C576591681BFD5003CF1A7 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				34344257169FD70E0043E7D6 /* SAVEITEM */,
 				34EA6D99168421FC001EA040 /* RSS */,
 				3469957C1689E9400068F7D3 /* TOPIC */,
 				34EA6D9A16842215001EA040 /* HTML */,
@@ -456,6 +495,7 @@
 				3465E2DC168AD72200AA2B12 /* genre.png in Resources */,
 				3465E2DD168AD72200AA2B12 /* rss.png in Resources */,
 				3465E2E6168C3FD200AA2B12 /* topic.png in Resources */,
+				34344263169FED250043E7D6 /* saved.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +557,10 @@
 				346995921689EB540068F7D3 /* KMTOPICItemListTableViewController.m in Sources */,
 				3465E2D7168AC8C700AA2B12 /* KMGenreRootTableViewController.m in Sources */,
 				3465E2E4168BD39200AA2B12 /* KMTOPICRootTableViewController.m in Sources */,
+				3434425C169FD8390043E7D6 /* KMSaveItemManager.m in Sources */,
+				3434425D169FD8390043E7D6 /* KMSaveItem.m in Sources */,
+				34344261169FE32C0043E7D6 /* KMSaveItemTableViewController.m in Sources */,
+				3434426E169FF6E10043E7D6 /* KMSaveItemContentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

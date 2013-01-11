@@ -10,10 +10,11 @@
 #import "KMRootTableViewController.h"
 #import "KMGenreRootTableViewController.h"
 #import "KMTOPICRootTableViewController.h"
+#import "KMSaveItemTableViewController.h"
 
 @implementation KMAppDelegate
 @synthesize window;
-@synthesize mainView,genreView,tabBarController;
+@synthesize mainView,genreView,topicView,tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -33,6 +34,10 @@
     topicRootController_ = [[UINavigationController alloc]initWithRootViewController:topicView];
     [viewControllers addObject:topicRootController_];
     
+    saveItemView = [[KMSaveItemTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    saveItemRootController_ = [[UINavigationController alloc]initWithRootViewController:saveItemView];
+    [viewControllers addObject:saveItemRootController_];
+    
     tabBarController = [[UITabBarController alloc]init];
     tabBarController.viewControllers = viewControllers;
 
@@ -41,16 +46,16 @@
     tabItem1.image = [UIImage imageNamed:@"rss.png"];
     UITabBarItem *tabItem2 = [tabItemAry objectAtIndex:1];
     tabItem2.image = [UIImage imageNamed:@"genre.png"];
-    
     UITabBarItem *tabItem3 = [tabItemAry objectAtIndex:2];
     tabItem3.image = [UIImage imageNamed:@"topic.png"];
+    UITabBarItem *tabItem4 = [tabItemAry objectAtIndex:3];
+    tabItem4.image = [UIImage imageNamed:@"saved.png"];
 
     [window addSubview:tabBarController.view];
 
-#if 1
+#if 0
     UITabBarController *controller = self.tabBarController;
     controller.selectedViewController = [controller.viewControllers objectAtIndex: 0];
-
 #endif
     
     

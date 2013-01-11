@@ -1,5 +1,5 @@
 //
-//  KMRootTableViewController.h
+//  KMSaveItemTableViewController.h
 //  RSSnikoNews
 //
 //  Created by KoujiMiura on 2012/12/19.
@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KMGenreRootTableViewController : UITableViewController<UIActionSheetDelegate>
+@interface KMSaveItemTableViewController : UITableViewController<UIActionSheetDelegate>
 {
     UIActionSheet*  _refreshAllChannelsSheet;
     BOOL _isDownloaded;
-    UIActivityIndicatorView *_networkIndicator;
-
 }
 @end

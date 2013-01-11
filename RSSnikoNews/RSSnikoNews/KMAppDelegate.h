@@ -12,6 +12,7 @@
 @class KMRootTableViewController;
 @class KMGenreRootTableViewController;
 @class KMTOPICRootTableViewController;
+@class KMSaveItemTableViewController;
 
 @interface KMAppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -19,10 +20,12 @@
     UIViewController *rootController_;
     UIViewController *genreRootController_;
     UIViewController *topicRootController_;
+    UIViewController *saveItemRootController_;
     UITabBarController *tabBarController;
     KMRootTableViewController *mainView;
     KMGenreRootTableViewController *genreView;
     KMTOPICRootTableViewController *topicView;
+    KMSaveItemTableViewController *saveItemView;
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -30,5 +33,6 @@
 @property (nonatomic, retain) KMRootTableViewController *mainView;
 @property (nonatomic, retain) KMGenreRootTableViewController *genreView;
 @property (nonatomic, retain) KMTOPICRootTableViewController *topicView;
+@property (nonatomic, retain) KMSaveItemTableViewController *saveItemView;
 
 @end
