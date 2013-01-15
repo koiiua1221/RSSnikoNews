@@ -51,17 +51,29 @@
 }
 - (void)saveItem
 {
-    KMSaveItem *saveItem = [[KMSaveItem alloc]init];
-    saveItem.feedUrlString = _item.link;
-    saveItem.title = _item.title;
-    [[KMSaveItemManager sharedManager] addSaveItem:saveItem];
-    [[KMSaveItemManager sharedManager] save];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"完了メッセージ"
-                                                    message:@"記事を保存しました。"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"確認"
+                                                    message:@"記事を保存しますか？"
                                                    delegate:self
-                                          cancelButtonTitle:@"確認"
-                                          otherButtonTitles:nil];
+                                          cancelButtonTitle:@"NO"
+                                          otherButtonTitles:@"YES",nil];
     [alert show];
+}
+-(void)alertView:(UIAlertView*)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex==1) {
+        KMSaveItem *saveItem = [[KMSaveItem alloc]init];
+        saveItem.feedUrlString = _item.link;
+        saveItem.title = _item.title;
+        [[KMSaveItemManager sharedManager] addSaveItem:saveItem];
+        [[KMSaveItemManager sharedManager] save];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"完了メッセージ"
+                                                        message:@"記事を保存しました。"
+                                                       delegate:self
+                                              cancelButtonTitle:@"確認"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)_updateHTMLContent

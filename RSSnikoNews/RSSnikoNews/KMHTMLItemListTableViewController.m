@@ -10,6 +10,7 @@
 #import "KMHTMLItem.h"
 #import "KMHTMLChannel.h"
 #import "KMHTMLContentViewController.h"
+#import "KMHTMLConnector.h"
 
 @interface KMHTMLItemListTableViewController ()
 
@@ -23,6 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -67,7 +69,12 @@
 {
     [super didReceiveMemoryWarning];
 }
-
+/*
+- (void)viewWillUnload
+{
+    [[KMHTMLConnector sharedConnector]removeObserver:self forKeyPath:@"networkAccessing"];
+}
+*/
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -91,6 +98,17 @@
     [self _updateCell:cell atIndexPath:indexPath];
     
     return cell;
+}
+- (void)_updateNetworkActivity
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    [KMHTMLConnector sharedConnector].networkAccessing;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"networkAccessing"]) {
+        [self _updateNetworkActivity];
+    }
 }
 
 #pragma mark - Table view delegate

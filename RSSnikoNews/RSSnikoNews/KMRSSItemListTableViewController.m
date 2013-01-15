@@ -10,6 +10,7 @@
 #import "KMRSSItem.h"
 #import "KMRSSChannel.h"
 #import "KMRSSContentViewController.h"
+#import "KMRSSConnector.h"
 
 @interface KMRSSItemListTableViewController ()
 
@@ -23,6 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -89,6 +91,17 @@
     [self _updateCell:cell atIndexPath:indexPath];
 
     return cell;
+}
+- (void)_updateNetworkActivity
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    [KMRSSConnector sharedConnector].networkAccessing;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"networkAccessing"]) {
+        [self _updateNetworkActivity];
+    }
 }
 
 #pragma mark - Table view delegate

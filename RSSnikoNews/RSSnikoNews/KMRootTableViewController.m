@@ -23,6 +23,7 @@
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"RSS別";
+        controller = [[KMRSSItemListTableViewController alloc] init];
         [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
@@ -98,6 +99,7 @@
 }
 - (void)reloadChannel
 {
+    [[KMRSSConnector sharedConnector] cancelRefreshAllChannels];
     [[KMRSSConnector sharedConnector]refreshAllChannels];
     _isDownloaded=YES;
 
@@ -118,13 +120,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     return [KMRSSChannelManager sharedManager].channels.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -155,8 +155,8 @@
     if (!channel) {
         return;
     }
-    KMRSSItemListTableViewController*  controller;
-    controller = [[KMRSSItemListTableViewController alloc] init];
+//    KMRSSItemListTableViewController*  controller;
+//    controller = [[KMRSSItemListTableViewController alloc] init];
     controller.channel = channel;
     controller.delegate = self;
     
@@ -169,6 +169,7 @@
 
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
+/*
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
                                 initWithTitle:@"ダウンロード中…"
                                 delegate:self
@@ -176,6 +177,7 @@
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showFromTabBar:self.tabBarController.tabBar];
+*/
 }
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
@@ -193,9 +195,10 @@
 
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
+/*
     [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
     _refreshAllChannelsSheet = nil;
-    
+*/
 }
 - (void)_updateNetworkActivity
 {

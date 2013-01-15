@@ -41,6 +41,7 @@
     
     [[KMTOPICChannelManager sharedManager] removeAllChannel];
     [self.tableView reloadData];
+/*
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
                                 initWithTitle:@"ダウンロード中…"
                                 delegate:self
@@ -48,6 +49,7 @@
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showInView:self.view];
+*/
     [self parse];
 }
 - (void)parse
@@ -116,9 +118,10 @@
 
     [self.tableView reloadData];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+/*
     [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
     _refreshAllChannelsSheet = nil;
-
+*/
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
@@ -255,6 +258,7 @@
 }
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
+/*
     _refreshAllChannelsSheet = [[UIActionSheet alloc]
                                 initWithTitle:@"ダウンロード中…"
                                 delegate:self
@@ -262,15 +266,18 @@
                                 destructiveButtonTitle:nil
                                 otherButtonTitles:nil];
     [_refreshAllChannelsSheet showFromToolbar:self.navigationController.toolbar];
+*/
 }
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
 {
+/*
     float   progress;
     progress = [[KMTOPICConnector sharedConnector] progressOfRefreshAllChannels];
     
     _refreshAllChannelsSheet.title =
     [NSString stringWithFormat:@"Refreshing all channels… %d", (int)(progress * 100)];
+*/
 }
 
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification

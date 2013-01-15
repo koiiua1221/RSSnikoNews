@@ -10,6 +10,7 @@
 #import "KMTOPICItem.h"
 #import "KMTOPICChannel.h"
 #import "KMTOPICContentViewController.h"
+#import "KMTOPICConnector.h"
 
 @interface KMTOPICItemListTableViewController ()
 
@@ -23,6 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
+        [[KMTOPICConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -65,6 +67,17 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+- (void)_updateNetworkActivity
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible =
+    [KMTOPICConnector sharedConnector].networkAccessing;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"networkAccessing"]) {
+        [self _updateNetworkActivity];
+    }
 }
 
 #pragma mark - Table view data source

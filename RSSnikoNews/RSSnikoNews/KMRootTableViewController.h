@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class KMRSSItemListTableViewController;
 @interface KMRootTableViewController : UITableViewController<UIActionSheetDelegate>
 {
     UIActionSheet*  _refreshAllChannelsSheet;
     BOOL _isDownloaded;
+    KMRSSItemListTableViewController*  controller;
+
 }
 @end
