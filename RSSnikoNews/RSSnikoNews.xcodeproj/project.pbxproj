@@ -18,6 +18,7 @@
 		3434427916A003930043E7D6 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 3434427816A003930043E7D6 /* about.png */; };
 		3434427E16A003E70043E7D6 /* KMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434427D16A003E70043E7D6 /* KMAboutViewController.m */; };
 		3434428016A008430043E7D6 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 3434427F16A008420043E7D6 /* about.html */; };
+		3434428216A55D940043E7D6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3434428116A55D930043E7D6 /* QuartzCore.framework */; };
 		3465E2D7168AC8C700AA2B12 /* KMGenreRootTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */; };
 		3465E2DC168AD72200AA2B12 /* genre.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2DA168AD72200AA2B12 /* genre.png */; };
 		3465E2DD168AD72200AA2B12 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 3465E2DB168AD72200AA2B12 /* rss.png */; };
@@ -95,6 +96,7 @@
 		3434427C16A003E70043E7D6 /* KMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAboutViewController.h; sourceTree = "<group>"; };
 		3434427D16A003E70043E7D6 /* KMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAboutViewController.m; sourceTree = "<group>"; };
 		3434427F16A008420043E7D6 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		3434428116A55D930043E7D6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMGenreRootTableViewController.m; sourceTree = "<group>"; };
 		3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMGenreRootTableViewController.h; sourceTree = "<group>"; };
 		3465E2DA168AD72200AA2B12 /* genre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = genre.png; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3434428216A55D940043E7D6 /* QuartzCore.framework in Frameworks */,
 				347B42531689D910003755C3 /* libxml2.dylib in Frameworks */,
 				34C576161681980F003CF1A7 /* UIKit.framework in Frameworks */,
 				34C576181681980F003CF1A7 /* Foundation.framework in Frameworks */,
@@ -310,6 +313,7 @@
 		34C576061681980F003CF1A7 = {
 			isa = PBXGroup;
 			children = (
+				3434428116A55D930043E7D6 /* QuartzCore.framework */,
 				34C5761B1681980F003CF1A7 /* RSSnikoNews */,
 				34C5764216819810003CF1A7 /* RSSnikoNewsTests */,
 				34C576141681980F003CF1A7 /* Frameworks */,
