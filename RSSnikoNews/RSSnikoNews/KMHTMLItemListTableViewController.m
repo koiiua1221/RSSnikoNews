@@ -24,7 +24,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
+//        [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -99,6 +99,7 @@
     
     return cell;
 }
+/*
 - (void)_updateNetworkActivity
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible =
@@ -110,7 +111,7 @@
         [self _updateNetworkActivity];
     }
 }
-
+*/
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
