@@ -12,6 +12,10 @@
 #import "KMContentViewController.h"
 #import "KMHTMLConnector.h"
 
+#import "KMContentViewController.h"
+#import "IIViewDeckController.h"
+#import "KMContentTwitterViewController.h"
+
 @interface KMHTMLItemListTableViewController ()
 
 @end
@@ -126,16 +130,24 @@
     if (!item) {
         return;
     }
-    KMContentViewController*   controller;
-    controller = [[KMContentViewController alloc] initWithSaveButton];
+    KMContentViewController*  controller;
+    controller = [[KMContentViewController alloc] init];
     controller.item = item;
     controller.delegate = self;
-        
+    
+    KMContentTwitterViewController*  twitterView;
+    twitterView = [[KMContentTwitterViewController alloc] init];
+    twitterView.item = item;
+    twitterView.delegate = self;
+    
+    IIViewDeckController *deckView = [[IIViewDeckController alloc]initWithCenterViewController:controller leftViewController:twitterView save:YES];
+    deckView.item = item;
+    
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
     backButton.title=@"戻る";
     self.navigationItem.backBarButtonItem=backButton;
     
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:deckView animated:YES];
 }
 
 @end

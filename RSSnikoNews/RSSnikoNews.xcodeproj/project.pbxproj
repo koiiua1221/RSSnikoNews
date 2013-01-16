@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3406F1A51682A42E004BDDFD /* KMRSSResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */; };
 		3406F1AD1682DDB7004BDDFD /* KMRSSItemListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */; };
-		3406F1B01682F52F004BDDFD /* KMRSSContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */; };
 		3434425C169FD8390043E7D6 /* KMSaveItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 34344258169FD8390043E7D6 /* KMSaveItemManager.m */; };
 		3434425D169FD8390043E7D6 /* KMSaveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34344259169FD8390043E7D6 /* KMSaveItem.m */; };
 		34344261169FE32C0043E7D6 /* KMSaveItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */; };
@@ -29,13 +28,14 @@
 		3469958A1689E9B90068F7D3 /* KMTOPICConnector.m in Sources */ = {isa = PBXBuildFile; fileRef = 346995831689E9B90068F7D3 /* KMTOPICConnector.m */; };
 		3469958B1689E9B90068F7D3 /* KMTOPICItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 346995851689E9B90068F7D3 /* KMTOPICItem.m */; };
 		3469958C1689E9B90068F7D3 /* KMTOPICResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 346995871689E9B90068F7D3 /* KMTOPICResponseParser.m */; };
-		346995911689EB540068F7D3 /* KMTOPICContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3469958E1689EB540068F7D3 /* KMTOPICContentViewController.m */; };
 		346995921689EB540068F7D3 /* KMTOPICItemListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 346995901689EB540068F7D3 /* KMTOPICItemListTableViewController.m */; };
 		34699594168A8D330068F7D3 /* rss.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34699593168A8D330068F7D3 /* rss.plist */; };
 		34699596168A91400068F7D3 /* genre.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34699595168A91400068F7D3 /* genre.plist */; };
-		347B424D1689D802003755C3 /* KMHTMLContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B424C1689D802003755C3 /* KMHTMLContentViewController.m */; };
 		347B42511689D8F5003755C3 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 347B424F1689D8F5003755C3 /* XPathQuery.m */; };
 		347B42531689D910003755C3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 347B42521689D910003755C3 /* libxml2.dylib */; };
+		3490103216A68E6A0056A96B /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3490102F16A68E6A0056A96B /* IIViewDeckController.m */; };
+		3490103316A68E6A0056A96B /* IIWrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3490103116A68E6A0056A96B /* IIWrapController.m */; };
+		3490103616A6950D0056A96B /* KMContentTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3490103516A6950D0056A96B /* KMContentTwitterViewController.m */; };
 		34C576161681980F003CF1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576151681980F003CF1A7 /* UIKit.framework */; };
 		34C576181681980F003CF1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576171681980F003CF1A7 /* Foundation.framework */; };
 		34C5761A1681980F003CF1A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34C576191681980F003CF1A7 /* CoreGraphics.framework */; };
@@ -79,8 +79,6 @@
 		3406F1A41682A42E004BDDFD /* KMRSSResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSResponseParser.m; sourceTree = "<group>"; };
 		3406F1AB1682DDB7004BDDFD /* KMRSSItemListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSItemListTableViewController.h; sourceTree = "<group>"; };
 		3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSItemListTableViewController.m; sourceTree = "<group>"; };
-		3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMRSSContentViewController.h; sourceTree = "<group>"; };
-		3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMRSSContentViewController.m; sourceTree = "<group>"; };
 		34344255169E63460043E7D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34344256169E63460043E7D6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		34344258169FD8390043E7D6 /* KMSaveItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItemManager.m; sourceTree = "<group>"; };
@@ -114,18 +112,20 @@
 		346995851689E9B90068F7D3 /* KMTOPICItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTOPICItem.m; sourceTree = "<group>"; };
 		346995861689E9B90068F7D3 /* KMTOPICResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTOPICResponseParser.h; sourceTree = "<group>"; };
 		346995871689E9B90068F7D3 /* KMTOPICResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTOPICResponseParser.m; sourceTree = "<group>"; };
-		3469958D1689EB540068F7D3 /* KMTOPICContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTOPICContentViewController.h; sourceTree = "<group>"; };
-		3469958E1689EB540068F7D3 /* KMTOPICContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTOPICContentViewController.m; sourceTree = "<group>"; };
 		3469958F1689EB540068F7D3 /* KMTOPICItemListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMTOPICItemListTableViewController.h; sourceTree = "<group>"; };
 		346995901689EB540068F7D3 /* KMTOPICItemListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMTOPICItemListTableViewController.m; sourceTree = "<group>"; };
 		34699593168A8D330068F7D3 /* rss.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = rss.plist; sourceTree = "<group>"; };
 		34699595168A91400068F7D3 /* genre.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = genre.plist; sourceTree = "<group>"; };
-		347B424B1689D802003755C3 /* KMHTMLContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMHTMLContentViewController.h; sourceTree = "<group>"; };
-		347B424C1689D802003755C3 /* KMHTMLContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMHTMLContentViewController.m; sourceTree = "<group>"; };
 		347B424F1689D8F5003755C3 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		347B42501689D8F5003755C3 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
 		347B42521689D910003755C3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		347B42541689D949003755C3 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		3490102E16A68E6A0056A96B /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		3490102F16A68E6A0056A96B /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		3490103016A68E6A0056A96B /* IIWrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIWrapController.h; sourceTree = "<group>"; };
+		3490103116A68E6A0056A96B /* IIWrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIWrapController.m; sourceTree = "<group>"; };
+		3490103416A6950D0056A96B /* KMContentTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMContentTwitterViewController.h; sourceTree = "<group>"; };
+		3490103516A6950D0056A96B /* KMContentTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMContentTwitterViewController.m; sourceTree = "<group>"; };
 		34C576111681980F003CF1A7 /* RSSnikoNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSnikoNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34C576151681980F003CF1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		34C576171681980F003CF1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -197,6 +197,14 @@
 		3406F1AA1682CE1E004BDDFD /* control */ = {
 			isa = PBXGroup;
 			children = (
+				3434426D169FF6E10043E7D6 /* KMContentViewController.h */,
+				3434426C169FF6E10043E7D6 /* KMContentViewController.m */,
+				3490103416A6950D0056A96B /* KMContentTwitterViewController.h */,
+				3490103516A6950D0056A96B /* KMContentTwitterViewController.m */,
+				3490102E16A68E6A0056A96B /* IIViewDeckController.h */,
+				3490102F16A68E6A0056A96B /* IIViewDeckController.m */,
+				3490103016A68E6A0056A96B /* IIWrapController.h */,
+				3490103116A68E6A0056A96B /* IIWrapController.m */,
 				3434427B16A003B20043E7D6 /* ABOUT */,
 				3434425E169FE29E0043E7D6 /* SAVEITEM */,
 				3465E2EF168D217F00AA2B12 /* RSS */,
@@ -222,8 +230,6 @@
 			children = (
 				3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */,
 				34344260169FE32C0043E7D6 /* KMSaveItemTableViewController.h */,
-				3434426C169FF6E10043E7D6 /* KMContentViewController.m */,
-				3434426D169FF6E10043E7D6 /* KMContentViewController.h */,
 			);
 			name = SAVEITEM;
 			sourceTree = "<group>";
@@ -245,8 +251,6 @@
 				34C5765416819CEA003CF1A7 /* KMRootTableViewController.m */,
 				3406F1AB1682DDB7004BDDFD /* KMRSSItemListTableViewController.h */,
 				3406F1AC1682DDB7004BDDFD /* KMRSSItemListTableViewController.m */,
-				3406F1AE1682F52F004BDDFD /* KMRSSContentViewController.h */,
-				3406F1AF1682F52F004BDDFD /* KMRSSContentViewController.m */,
 			);
 			name = RSS;
 			sourceTree = "<group>";
@@ -254,8 +258,6 @@
 		3465E2F1168D218E00AA2B12 /* TOPIC */ = {
 			isa = PBXGroup;
 			children = (
-				3469958D1689EB540068F7D3 /* KMTOPICContentViewController.h */,
-				3469958E1689EB540068F7D3 /* KMTOPICContentViewController.m */,
 				3469958F1689EB540068F7D3 /* KMTOPICItemListTableViewController.h */,
 				346995901689EB540068F7D3 /* KMTOPICItemListTableViewController.m */,
 				3465E2E2168BD39100AA2B12 /* KMTOPICRootTableViewController.m */,
@@ -269,8 +271,6 @@
 			children = (
 				3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */,
 				3465E2D6168AC8C700AA2B12 /* KMGenreRootTableViewController.h */,
-				347B424B1689D802003755C3 /* KMHTMLContentViewController.h */,
-				347B424C1689D802003755C3 /* KMHTMLContentViewController.m */,
 				34EA6DAA16843239001EA040 /* KMHTMLItemListTableViewController.h */,
 				34EA6DAB16843239001EA040 /* KMHTMLItemListTableViewController.m */,
 			);
@@ -564,21 +564,18 @@
 				34C5766216829E9D003CF1A7 /* KMRSSItem.m in Sources */,
 				3406F1A51682A42E004BDDFD /* KMRSSResponseParser.m in Sources */,
 				3406F1AD1682DDB7004BDDFD /* KMRSSItemListTableViewController.m in Sources */,
-				3406F1B01682F52F004BDDFD /* KMRSSContentViewController.m in Sources */,
 				34EA6D9716841EF0001EA040 /* KMHTMLResponseParser.m in Sources */,
 				34EA6DA616842380001EA040 /* KMHTMLConnector.m in Sources */,
 				34EA6DA716842380001EA040 /* KMHTMLItem.m in Sources */,
 				34EA6DA816842380001EA040 /* KMHTMLChannelManager.m in Sources */,
 				34EA6DA916842380001EA040 /* KMHTMLChannel.m in Sources */,
 				34EA6DAC16843239001EA040 /* KMHTMLItemListTableViewController.m in Sources */,
-				347B424D1689D802003755C3 /* KMHTMLContentViewController.m in Sources */,
 				347B42511689D8F5003755C3 /* XPathQuery.m in Sources */,
 				346995881689E9B90068F7D3 /* KMTOPICChannel.m in Sources */,
 				346995891689E9B90068F7D3 /* KMTOPICChannelManager.m in Sources */,
 				3469958A1689E9B90068F7D3 /* KMTOPICConnector.m in Sources */,
 				3469958B1689E9B90068F7D3 /* KMTOPICItem.m in Sources */,
 				3469958C1689E9B90068F7D3 /* KMTOPICResponseParser.m in Sources */,
-				346995911689EB540068F7D3 /* KMTOPICContentViewController.m in Sources */,
 				346995921689EB540068F7D3 /* KMTOPICItemListTableViewController.m in Sources */,
 				3465E2D7168AC8C700AA2B12 /* KMGenreRootTableViewController.m in Sources */,
 				3465E2E4168BD39200AA2B12 /* KMTOPICRootTableViewController.m in Sources */,
@@ -587,6 +584,9 @@
 				34344261169FE32C0043E7D6 /* KMSaveItemTableViewController.m in Sources */,
 				3434426E169FF6E10043E7D6 /* KMContentViewController.m in Sources */,
 				3434427E16A003E70043E7D6 /* KMAboutViewController.m in Sources */,
+				3490103216A68E6A0056A96B /* IIViewDeckController.m in Sources */,
+				3490103316A68E6A0056A96B /* IIWrapController.m in Sources */,
+				3490103616A6950D0056A96B /* KMContentTwitterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

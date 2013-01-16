@@ -9,6 +9,9 @@
 #import "KMSaveItemTableViewController.h"
 #import "KMSaveItemManager.h"
 #import "KMContentViewController.h"
+#import "IIViewDeckController.h"
+#import "KMContentTwitterViewController.h"
+
 
 @interface KMSaveItemTableViewController ()
 
@@ -111,11 +114,19 @@
     controller.item = saveItem;
     controller.delegate = self;
     
+    KMContentTwitterViewController*  twitterView;
+    twitterView = [[KMContentTwitterViewController alloc] init];
+    twitterView.item = saveItem;
+    twitterView.delegate = self;
+    
+    IIViewDeckController *deckView = [[IIViewDeckController alloc]initWithCenterViewController:controller leftViewController:twitterView save:NO];
+    deckView.item = saveItem;
+
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
     backButton.title=@"戻る";
     self.navigationItem.backBarButtonItem=backButton;
 
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:deckView animated:YES];
 }
 - (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle

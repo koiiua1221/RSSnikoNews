@@ -69,11 +69,6 @@
     [[_webView layer] setBorderColor:[[UIColor blackColor] CGColor] ];
     [[_webView layer] setBorderWidth:2];
     [self.view addSubview:_webView];
-    _webTwitterView = [[UIWebView alloc]init];
-    _webTwitterView.delegate = self;
-    [self.view addSubview:_webTwitterView];
-    [[_webTwitterView layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[_webTwitterView layer] setBorderWidth:1.5];
     [self parse];
 }
 
@@ -119,29 +114,15 @@
 }
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection
 {
-    
-//    NSArray *titles = PerformHTMLXPathQuery(_downloadedData, @"//div/ul/li/span[@class='topics-tab-text']");
     _writings = PerformHTMLXPathQuery(_downloadedData, @"//div[@class='body-text']/p");
     for (NSDictionary *writing in _writings) {
         NSLog([writing objectForKey:@"nodeContent"]);
     }
-    _tweets = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/p[@class='user-description']");
-    for (NSDictionary *tweet in _tweets) {
-        NSLog([tweet objectForKey:@"nodeContent"]);
-    }
     
     _imgs = PerformHTMLXPathQuery(_downloadedData, @"//img[@id='image-view-area']");
     
-    if ([_tweets count]==0) {
-        _webView.frame=CGRectMake(bounds.origin.x, height*0.1,bounds.size.width , height*0.9);
-        _webTwitterView.frame=CGRectMake(bounds.origin.x, height*0.6, 0, 0);
-        [self _updateHTMLContents];
-    }else{
-        _webView.frame=CGRectMake(bounds.origin.x, height*0.1,bounds.size.width , height*0.5);
-        _webTwitterView.frame=CGRectMake(bounds.origin.x, height*0.6, bounds.size.width , height*0.4);
-        [self _updateHTMLContents];
-        [self _updateTwitterContents];
-    }
+    _webView.frame=CGRectMake(bounds.origin.x, height*0.1,bounds.size.width , height*0.9);
+    [self _updateHTMLContents];
 }
 - (void)_updateHTMLContents
 {
@@ -182,49 +163,6 @@
 
     [_webView loadHTMLString:html baseURL:nil];
     _webView.scalesPageToFit=YES;
-}
-- (void)_updateTwitterContents
-{
-    if (!_webTwitterView) {
-        return;
-    }
-    
-    NSMutableString*    html;
-    html = [NSMutableString string];
-    
-    [html appendString:@"<!DOCTYPE html>"];
-    [html appendString:@"<html>"];
-    [html appendString:@"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"];
-    [html appendString:@"<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">"];
-    [html appendString:@"<meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">"];
-    [html appendString:@"<meta name=\"viewport\" content=\"minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no\" />"];
-    [html appendString:@"</head>"];
-    [html appendString:@"<body>"];
-    if ([_tweets count]!=0) {
-        [html appendString:@"<div class=\"tweets-text\">"];
-        [html appendString:@"<table border width=310  align=center>"];
-        [html appendString:@"<tr>"];
-        [html appendString:@"<th><font size=3>Twitterの反応</font></th>"];
-        [html appendString:@"</tr>"];
-        for (NSDictionary *tweet in _tweets) {
-            if ([tweet objectForKey:@"nodeContent"]) {
-                [html appendString:@"<tr>"];
-                [html appendString:@"<td width=310>"];
-                [html appendString:@"<font size=3>"];
-                [html appendString:[tweet objectForKey:@"nodeContent"]];
-                [html appendString:@"</font>"];
-                [html appendString:@"</td>"];
-                [html appendString:@"</tr>"];
-            }
-        }
-        [html appendString:@"</table>"];
-        [html appendString:@"</div>"];
-    }
-    [html appendString:@"</body>"];
-    [html appendString:@"</html>"];
-    
-    [_webTwitterView loadHTMLString:html baseURL:nil];
-    _webTwitterView.scalesPageToFit=YES;
 }
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
