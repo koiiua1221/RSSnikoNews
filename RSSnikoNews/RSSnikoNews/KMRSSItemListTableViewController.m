@@ -12,6 +12,8 @@
 #import "KMRSSContentViewController.h"
 #import "KMRSSConnector.h"
 
+#import "KMContentViewController.h"
+
 @interface KMRSSItemListTableViewController ()
 
 @end
@@ -32,7 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = _channel.title;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -40,13 +41,14 @@
     if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
+    self.title = _channel.title;
     
     NSIndexPath*    indexPath;
     indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    
+    [self.tableView reloadData];
     for (UITableViewCell* cell in [self.tableView visibleCells]) {
         [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
     }
@@ -119,11 +121,19 @@
     if (!item) {
         return;
     }
+/*
     KMRSSContentViewController*   controller;
     controller = [[KMRSSContentViewController alloc] init];
+*/
+    KMContentViewController*   controller;
+    controller = [[KMContentViewController alloc] initWithSaveButton];
     controller.item = item;
     controller.delegate = self;
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
+    backButton.title=@"戻る";
+    self.navigationItem.backBarButtonItem=backButton;
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 @end

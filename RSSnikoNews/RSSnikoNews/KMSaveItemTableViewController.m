@@ -8,7 +8,7 @@
 
 #import "KMSaveItemTableViewController.h"
 #import "KMSaveItemManager.h"
-#import "KMSaveItemContentViewController.h"
+#import "KMContentViewController.h"
 
 @interface KMSaveItemTableViewController ()
 
@@ -106,11 +106,15 @@
     if (!saveItem) {
         return;
     }
-    KMSaveItemContentViewController*  controller;
-    controller = [[KMSaveItemContentViewController alloc] init];
+    KMContentViewController*  controller;
+    controller = [[KMContentViewController alloc] init];
     controller.item = saveItem;
     controller.delegate = self;
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
+    backButton.title=@"戻る";
+    self.navigationItem.backBarButtonItem=backButton;
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 - (void)tableView:(UITableView *)tableView

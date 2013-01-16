@@ -14,7 +14,7 @@
 		3434425D169FD8390043E7D6 /* KMSaveItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 34344259169FD8390043E7D6 /* KMSaveItem.m */; };
 		34344261169FE32C0043E7D6 /* KMSaveItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */; };
 		34344263169FED250043E7D6 /* saved.png in Resources */ = {isa = PBXBuildFile; fileRef = 34344262169FED250043E7D6 /* saved.png */; };
-		3434426E169FF6E10043E7D6 /* KMSaveItemContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434426C169FF6E10043E7D6 /* KMSaveItemContentViewController.m */; };
+		3434426E169FF6E10043E7D6 /* KMContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434426C169FF6E10043E7D6 /* KMContentViewController.m */; };
 		3434427916A003930043E7D6 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 3434427816A003930043E7D6 /* about.png */; };
 		3434427E16A003E70043E7D6 /* KMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3434427D16A003E70043E7D6 /* KMAboutViewController.m */; };
 		3434428016A008430043E7D6 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 3434427F16A008420043E7D6 /* about.html */; };
@@ -90,8 +90,8 @@
 		3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItemTableViewController.m; sourceTree = "<group>"; };
 		34344260169FE32C0043E7D6 /* KMSaveItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSaveItemTableViewController.h; sourceTree = "<group>"; };
 		34344262169FED250043E7D6 /* saved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saved.png; sourceTree = "<group>"; };
-		3434426C169FF6E10043E7D6 /* KMSaveItemContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMSaveItemContentViewController.m; sourceTree = "<group>"; };
-		3434426D169FF6E10043E7D6 /* KMSaveItemContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMSaveItemContentViewController.h; sourceTree = "<group>"; };
+		3434426C169FF6E10043E7D6 /* KMContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMContentViewController.m; sourceTree = "<group>"; };
+		3434426D169FF6E10043E7D6 /* KMContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMContentViewController.h; sourceTree = "<group>"; };
 		3434427816A003930043E7D6 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		3434427C16A003E70043E7D6 /* KMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMAboutViewController.h; sourceTree = "<group>"; };
 		3434427D16A003E70043E7D6 /* KMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMAboutViewController.m; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 				3434425E169FE29E0043E7D6 /* SAVEITEM */,
 				3465E2EF168D217F00AA2B12 /* RSS */,
 				3465E2F1168D218E00AA2B12 /* TOPIC */,
-				3465E2F2168D219600AA2B12 /* HTML */,
+				3465E2F2168D219600AA2B12 /* GENRE */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -222,8 +222,8 @@
 			children = (
 				3434425F169FE32C0043E7D6 /* KMSaveItemTableViewController.m */,
 				34344260169FE32C0043E7D6 /* KMSaveItemTableViewController.h */,
-				3434426C169FF6E10043E7D6 /* KMSaveItemContentViewController.m */,
-				3434426D169FF6E10043E7D6 /* KMSaveItemContentViewController.h */,
+				3434426C169FF6E10043E7D6 /* KMContentViewController.m */,
+				3434426D169FF6E10043E7D6 /* KMContentViewController.h */,
 			);
 			name = SAVEITEM;
 			sourceTree = "<group>";
@@ -264,7 +264,7 @@
 			name = TOPIC;
 			sourceTree = "<group>";
 		};
-		3465E2F2168D219600AA2B12 /* HTML */ = {
+		3465E2F2168D219600AA2B12 /* GENRE */ = {
 			isa = PBXGroup;
 			children = (
 				3465E2D5168AC8C700AA2B12 /* KMGenreRootTableViewController.m */,
@@ -274,7 +274,7 @@
 				34EA6DAA16843239001EA040 /* KMHTMLItemListTableViewController.h */,
 				34EA6DAB16843239001EA040 /* KMHTMLItemListTableViewController.m */,
 			);
-			name = HTML;
+			name = GENRE;
 			sourceTree = "<group>";
 		};
 		3465E2F3168D221D00AA2B12 /* image */ = {
@@ -313,7 +313,6 @@
 		34C576061681980F003CF1A7 = {
 			isa = PBXGroup;
 			children = (
-				3434428116A55D930043E7D6 /* QuartzCore.framework */,
 				34C5761B1681980F003CF1A7 /* RSSnikoNews */,
 				34C5764216819810003CF1A7 /* RSSnikoNewsTests */,
 				34C576141681980F003CF1A7 /* Frameworks */,
@@ -335,6 +334,7 @@
 			children = (
 				347B42541689D949003755C3 /* libxml2.2.dylib */,
 				347B42521689D910003755C3 /* libxml2.dylib */,
+				3434428116A55D930043E7D6 /* QuartzCore.framework */,
 				34C576151681980F003CF1A7 /* UIKit.framework */,
 				34C576171681980F003CF1A7 /* Foundation.framework */,
 				34C576191681980F003CF1A7 /* CoreGraphics.framework */,
@@ -396,7 +396,7 @@
 				34344257169FD70E0043E7D6 /* SAVEITEM */,
 				34EA6D99168421FC001EA040 /* RSS */,
 				3469957C1689E9400068F7D3 /* TOPIC */,
-				34EA6D9A16842215001EA040 /* HTML */,
+				34EA6D9A16842215001EA040 /* GENRE */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -418,7 +418,7 @@
 			name = RSS;
 			sourceTree = "<group>";
 		};
-		34EA6D9A16842215001EA040 /* HTML */ = {
+		34EA6D9A16842215001EA040 /* GENRE */ = {
 			isa = PBXGroup;
 			children = (
 				34EA6DA41684237F001EA040 /* KMHTMLChannel.h */,
@@ -432,7 +432,7 @@
 				34EA6D9516841EF0001EA040 /* KMHTMLResponseParser.h */,
 				34EA6D9616841EF0001EA040 /* KMHTMLResponseParser.m */,
 			);
-			name = HTML;
+			name = GENRE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -585,7 +585,7 @@
 				3434425C169FD8390043E7D6 /* KMSaveItemManager.m in Sources */,
 				3434425D169FD8390043E7D6 /* KMSaveItem.m in Sources */,
 				34344261169FE32C0043E7D6 /* KMSaveItemTableViewController.m in Sources */,
-				3434426E169FF6E10043E7D6 /* KMSaveItemContentViewController.m in Sources */,
+				3434426E169FF6E10043E7D6 /* KMContentViewController.m in Sources */,
 				3434427E16A003E70043E7D6 /* KMAboutViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

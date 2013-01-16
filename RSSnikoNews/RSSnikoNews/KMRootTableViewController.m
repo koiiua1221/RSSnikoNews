@@ -155,8 +155,10 @@
     if (!channel) {
         return;
     }
-//    KMRSSItemListTableViewController*  controller;
-//    controller = [[KMRSSItemListTableViewController alloc] init];
+/*
+    KMRSSItemListTableViewController*  controller;
+    controller = [[KMRSSItemListTableViewController alloc] init];
+*/
     controller.channel = channel;
     controller.delegate = self;
     

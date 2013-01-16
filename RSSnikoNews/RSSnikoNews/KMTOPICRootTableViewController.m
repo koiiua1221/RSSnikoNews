@@ -97,18 +97,23 @@
         NSArray *topicArray = [[[urldic objectForKey:@"nodeChildArray"] objectAtIndex:0] objectForKey:@"nodeChildArray"];
         NSMutableArray *items = [NSMutableArray array];
         KMTOPICChannel *topicChannel;
+        int ii=0;
         for (NSDictionary *topicDic in topicArray) {
             NSString *baseUrl = @"http://news.nicovideo.jp";
             NSDictionary *childArray = [[topicDic objectForKey:@"nodeChildArray"] objectAtIndex:0];
+            if ([[childArray objectForKey:@"nodeContent"] isEqualToString:@"トピックス記事一覧へ"]) {
+                break;//「トピックス記事一覧へ」は不要。除外する
+            }
             KMTOPICItem*    item;
             item = [[KMTOPICItem alloc] init];
             [items addObject:item];
             topicChannel = [topicChannels objectAtIndex:i];
+
             item.title = [childArray objectForKey:@"nodeContent"];
             item.link =[baseUrl stringByAppendingString:
             [[[childArray objectForKey:@"nodeAttributeArray"]objectAtIndex:0]objectForKey:@"nodeContent"]];
             NSLog([childArray objectForKey:@"nodeContent"]);
-            NSLog([[[childArray objectForKey:@"nodeAttributeArray"]objectAtIndex:0]objectForKey:@"nodeContent"]);            
+            NSLog([[[childArray objectForKey:@"nodeAttributeArray"]objectAtIndex:0]objectForKey:@"nodeContent"]);           
         }
         [topicChannel.items setArray:items];
         i++;

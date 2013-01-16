@@ -150,32 +150,26 @@ static KMHTMLConnector*    _sharedInstance = nil;
 #pragma mark -- HTMLResponseParserDelegate --
 - (void)_notifyRetriveTitleStatusWithParser:(KMHTMLResponseParser*)parser
 {
-    // userInfoの作成
     NSMutableDictionary*    userInfo;
     userInfo = [NSMutableDictionary dictionary];
     [userInfo setObject:parser forKey:@"parser"];
     
-    // 通知する
     [[NSNotificationCenter defaultCenter]
      postNotificationName:HTMLConnectorDidFinishRetriveTitle object:self userInfo:userInfo];
     
-    // networkAccessingの値の変更を通知する
     [self willChangeValueForKey:@"networkAccessing"];
     [_retrieveTitleParsers removeObject:parser];
     [self didChangeValueForKey:@"networkAccessing"];
 }
 - (void)_notifyRefreshAllChannelStatus
 {
-    // userInfoの作成
     NSMutableDictionary*    userInfo;
     userInfo = [NSMutableDictionary dictionary];
     [userInfo setObject:_refreshAllChannelParsers forKey:@"parsers"];
     
-    // 進捗の取得
     float   progress;
     progress = [self progressOfRefreshAllChannels];
     
-    // 通知
     NSString*   name;
     if (progress < 1.0f) {
         name = HTMLConnectorInProgressRefreshAllChannels;
@@ -186,9 +180,7 @@ static KMHTMLConnector*    _sharedInstance = nil;
     [[NSNotificationCenter defaultCenter]
      postNotificationName:name object:self userInfo:userInfo];
     
-    // For did finish
     if (progress == 1.0f) {
-        // networkAccessingの値の変更を通知する
         [self willChangeValueForKey:@"networkAccessing"];
         [_refreshAllChannelParsers removeAllObjects];
         [self didChangeValueForKey:@"networkAccessing"];

@@ -64,7 +64,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
     
     if (buttonIndex==1) {
         KMSaveItem *saveItem = [[KMSaveItem alloc]init];
-        saveItem.feedUrlString = _item.link;
+        saveItem.link = _item.link;
         saveItem.title = _item.title;
         [[KMSaveItemManager sharedManager] addSaveItem:saveItem];
         [[KMSaveItemManager sharedManager] save];

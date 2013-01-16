@@ -162,8 +162,8 @@
     if (!channel) {
         return;
     }
-//    KMHTMLItemListTableViewController*  controller;
-//    controller = [[KMHTMLItemListTableViewController alloc] init];
+    KMHTMLItemListTableViewController*  controller;
+    controller = [[KMHTMLItemListTableViewController alloc] init];
     controller.channel = channel;
     controller.delegate = self;
     

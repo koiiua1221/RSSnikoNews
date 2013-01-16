@@ -68,7 +68,7 @@
     
     [window makeKeyAndVisible];
 
-//    sleep(1.5f);
+    sleep(1.0f);
     return YES;
 }
 

@@ -76,14 +76,14 @@ static KMHTMLChannelManager*  _sharedInstance = nil;
         return nil;
     }
     path = [paths objectAtIndex:0];
-    path = [path stringByAppendingPathComponent:@".channel"];
+    path = [path stringByAppendingPathComponent:@".genrechannel"];
     return path;
 }
 
 - (NSString*)_channelPath
 {
     NSString*   path;
-    path = [[self _channelDir] stringByAppendingPathComponent:@"channel.dat"];
+    path = [[self _channelDir] stringByAppendingPathComponent:@"genrechannel.dat"];
     return path;
 }
 - (void)load

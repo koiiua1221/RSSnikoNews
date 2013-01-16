@@ -9,7 +9,7 @@
 #import "KMHTMLItemListTableViewController.h"
 #import "KMHTMLItem.h"
 #import "KMHTMLChannel.h"
-#import "KMHTMLContentViewController.h"
+#import "KMContentViewController.h"
 #import "KMHTMLConnector.h"
 
 @interface KMHTMLItemListTableViewController ()
@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = _channel.title;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -41,6 +40,7 @@
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    self.title = _channel.title;
 
     NSIndexPath*    indexPath;
     indexPath = [self.tableView indexPathForSelectedRow];
@@ -126,10 +126,14 @@
     if (!item) {
         return;
     }
-    KMHTMLContentViewController*   controller;
-    controller = [[KMHTMLContentViewController alloc] init];
+    KMContentViewController*   controller;
+    controller = [[KMContentViewController alloc] initWithSaveButton];
     controller.item = item;
     controller.delegate = self;
+        
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
+    backButton.title=@"戻る";
+    self.navigationItem.backBarButtonItem=backButton;
     
     [self.navigationController pushViewController:controller animated:YES];
 }

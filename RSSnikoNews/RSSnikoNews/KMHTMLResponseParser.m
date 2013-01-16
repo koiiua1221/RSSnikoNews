@@ -101,6 +101,7 @@
     NSArray *contents = PerformHTMLXPathQuery(_downloadedData, @"//h3/a[@href]");
     KMHTMLItem*    item;
     
+    int count = 0;
     for (NSDictionary *content in contents) {
         item = [[KMHTMLItem alloc] init];
         [_items addObject:item];

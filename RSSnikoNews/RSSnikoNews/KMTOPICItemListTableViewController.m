@@ -9,7 +9,7 @@
 #import "KMTOPICItemListTableViewController.h"
 #import "KMTOPICItem.h"
 #import "KMTOPICChannel.h"
-#import "KMTOPICContentViewController.h"
+#import "KMContentViewController.h"
 #import "KMTOPICConnector.h"
 
 @interface KMTOPICItemListTableViewController ()
@@ -119,11 +119,15 @@
     if (!item) {
         return;
     }
-    KMTOPICContentViewController*   controller;
-    controller = [[KMTOPICContentViewController alloc] init];
+    KMContentViewController*   controller;
+    controller = [[KMContentViewController alloc] initWithSaveButton];
     controller.item = item;
     controller.delegate = self;
     
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]init];
+    backButton.title=@"戻る";
+    self.navigationItem.backBarButtonItem=backButton;
+        
     [self.navigationController pushViewController:controller animated:YES];
 }
 
