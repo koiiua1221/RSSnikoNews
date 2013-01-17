@@ -96,11 +96,6 @@
 {
     
     _tweets = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/p[@class='user-description']");
-/*
-    for (NSDictionary *tweet in _tweets) {
-        NSLog([tweet objectForKey:@"nodeContent"]);
-    }
-*/
     NSArray *tweetImageUrls = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/a/img[@title]");
     for (NSDictionary *tweetImageUrl in tweetImageUrls) {
         id urltmp =[[[tweetImageUrl objectForKey:@"nodeAttributeArray"] objectAtIndex:1]objectForKey:@"nodeContent"];
@@ -112,54 +107,10 @@
     }
     if ([_tweets count]==0) {
     }else{
-        //[self _updateTwitterContents];
         [_tableView reloadData];
     }
 }
 
-- (void)_updateTwitterContents
-{
-    if (!_webTwitterView) {
-        return;
-    }
-    
-    NSMutableString*    html;
-    html = [NSMutableString string];
-    
-    [html appendString:@"<!DOCTYPE html>"];
-    [html appendString:@"<html>"];
-    [html appendString:@"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"];
-    [html appendString:@"<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">"];
-    [html appendString:@"<meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">"];
-    [html appendString:@"<meta name=\"viewport\" content=\"minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no\" />"];
-    [html appendString:@"</head>"];
-    [html appendString:@"<body>"];
-    if ([_tweets count]!=0) {
-        [html appendString:@"<div class=\"tweets-text\">"];
-        [html appendString:@"<table border width=250  align=left>"];
-//        [html appendString:@"<tr>"];
-//        [html appendString:@"<th><font size=3>Twitterの反応</font></th>"];
-//        [html appendString:@"</tr>"];
-        for (NSDictionary *tweet in _tweets) {
-            if ([tweet objectForKey:@"nodeContent"]) {
-                [html appendString:@"<tr>"];
-                [html appendString:@"<td width=250>"];
-                [html appendString:@"<font size=3>"];
-                [html appendString:[tweet objectForKey:@"nodeContent"]];
-                [html appendString:@"</font>"];
-                [html appendString:@"</td>"];
-                [html appendString:@"</tr>"];
-            }
-        }
-        [html appendString:@"</table>"];
-        [html appendString:@"</div>"];
-    }
-    [html appendString:@"</body>"];
-    [html appendString:@"</html>"];
-    
-    [_webTwitterView loadHTMLString:html baseURL:nil];
-    _webTwitterView.scalesPageToFit=YES;
-}
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
     _connection = nil;
