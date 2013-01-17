@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 @class KMSaveItem;
 
-@interface KMContentTwitterViewController : UIViewController<UIWebViewDelegate>
+@interface KMContentTwitterViewController : UIViewController<UIWebViewDelegate,UITableViewDelegate>
 {
     KMSaveItem* _item;
     UIWebView* _webTwitterView;
+    UITableView *_tableView;
     NSArray *_tweets;
+    NSMutableArray *_tweetImages;
     NSMutableData* _downloadedData;
     UILabel* _topicTitle;
     NSURLConnection* _connection;

@@ -34,10 +34,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    bounds = [[UIScreen mainScreen]bounds];
-
+//    bounds = [[UIScreen mainScreen]bounds];
+    _tweetImages = [[NSMutableArray alloc]init];
     bounds = [[UIScreen mainScreen]bounds];
     
+    height = bounds.size.height;// - self.tabBarController.tabBar.bounds.size.height-self.navigationController.navigationBar.bounds.size.height;
     height = bounds.size.height - self.tabBarController.tabBar.bounds.size.height-self.navigationController.navigationBar.bounds.size.height;
     
     _topicTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bounds.size.width, height*0.1)];
@@ -55,6 +56,13 @@
     [[_webTwitterView layer] setBorderWidth:2];
     [self.view addSubview:_webTwitterView];
 
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, height*0.1, bounds.size.width*0.87, self.view.bounds.size.height-height*0.1) style:UITableViewStyleGrouped];
+    
+    _tableView.delegate=self;
+    _tableView.dataSource=self;
+     _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:_tableView];
+    
     [self parse];
 }
 
@@ -88,13 +96,24 @@
 {
     
     _tweets = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/p[@class='user-description']");
+/*
     for (NSDictionary *tweet in _tweets) {
         NSLog([tweet objectForKey:@"nodeContent"]);
     }
+*/
+    NSArray *tweetImageUrls = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/a/img[@title]");
+    for (NSDictionary *tweetImageUrl in tweetImageUrls) {
+        id urltmp =[[[tweetImageUrl objectForKey:@"nodeAttributeArray"] objectAtIndex:1]objectForKey:@"nodeContent"];
+        NSURL *url = [NSURL URLWithString:urltmp];
+        NSData *imgFile = [NSData dataWithContentsOfURL:url];
+        UIImage *tweetImage = [[UIImage alloc] initWithData:imgFile];
+        [_tweetImages addObject:tweetImage];
 
+    }
     if ([_tweets count]==0) {
     }else{
-        [self _updateTwitterContents];
+        //[self _updateTwitterContents];
+        [_tableView reloadData];
     }
 }
 
@@ -118,9 +137,9 @@
     if ([_tweets count]!=0) {
         [html appendString:@"<div class=\"tweets-text\">"];
         [html appendString:@"<table border width=250  align=left>"];
-        [html appendString:@"<tr>"];
+//        [html appendString:@"<tr>"];
 //        [html appendString:@"<th><font size=3>Twitterの反応</font></th>"];
-        [html appendString:@"</tr>"];
+//        [html appendString:@"</tr>"];
         for (NSDictionary *tweet in _tweets) {
             if ([tweet objectForKey:@"nodeContent"]) {
                 [html appendString:@"<tr>"];
@@ -145,5 +164,81 @@
 {
     _connection = nil;
     [UIApplication sharedApplication].networkActivityIndicatorVisible=NO;
+}
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _tweets.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = @"tweetCell";
+    CellIdentifier=[CellIdentifier stringByAppendingFormat:@"%d",indexPath.row];
+    UITableViewCell *cell;
+//    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (!cell) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+    [self _updateCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"";
+}
+- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    NSInteger cellnum = _tweets.count;
+    
+    if (indexPath.row >= cellnum) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
+    NSString *body = [tweet objectForKey:@"nodeContent"];;
+	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0, 480.0) lineBreakMode:UILineBreakModeWordWrap];
+	return size.height +30;
+
+}
+- (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, cell.frame.size.height, cell.frame.size.height)];
+    imageView.image=[_tweetImages objectAtIndex:indexPath.row];
+    [cell.contentView addSubview:imageView];
+
+    UILabel *label;
+    label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
+    label.tag = 1;
+    label.numberOfLines = 0;
+    label.lineBreakMode = UILineBreakModeWordWrap;
+    label.font = [UIFont systemFontOfSize:14.0];
+    UIView *message = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.size.height, 0.0, cell.frame.size.width-cell.frame.size.height, cell.frame.size.height)];
+    message.tag = 0;
+    [message addSubview:label];
+    [cell.contentView addSubview:message];
+    NSString *text = [tweet objectForKey:@"nodeContent"];;
+   
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0f-cell.frame.size.height, height) lineBreakMode:UILineBreakModeWordWrap];
+    label.frame = CGRectMake(20, 11, size.width + 5, size.height);
+    label.text = text;
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 @end
