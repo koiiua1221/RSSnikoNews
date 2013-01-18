@@ -139,6 +139,24 @@ static KMRSSConnector*    _sharedInstance = nil;
     [_refreshAllChannelParsers removeAllObjects];
     [self didChangeValueForKey:@"networkAccessing"];
 }
+- (void)refreshChannel:(NSString*)urlString
+{
+    BOOL    networkAccessing;
+    networkAccessing = self.networkAccessing;
+    
+    KMRSSResponseParser*  parser;
+    parser = [[KMRSSResponseParser alloc] init];
+    parser.feedUrlString = urlString;
+    parser.delegate = self;
+    [parser parse];
+    [_refreshAllChannelParsers addObject:parser];
+    
+    if (networkAccessing != self.networkAccessing) {
+        [self willChangeValueForKey:@"networkAccessing"];
+        [self didChangeValueForKey:@"networkAccessing"];
+    }
+}
+
 #pragma mark -- RSSResponseParserDelegate --
 - (void)_notifyRetriveTitleStatusWithParser:(KMRSSResponseParser*)parser
 {

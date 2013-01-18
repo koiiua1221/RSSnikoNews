@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class KMHTMLItemListTableViewController;
+@class KMGenreItemListTableViewController;
 
 @interface KMGenreRootTableViewController : UITableViewController<UIActionSheetDelegate>
 {
     UIActionSheet*  _refreshAllChannelsSheet;
     BOOL _isDownloaded;
     UIActivityIndicatorView *_networkIndicator;
-    KMHTMLItemListTableViewController*  controller;
+    KMGenreItemListTableViewController*  controller;
 
 }
 @end

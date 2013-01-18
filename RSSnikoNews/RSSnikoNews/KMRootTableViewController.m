@@ -24,7 +24,6 @@
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"RSS別";
         controller = [[KMRSSItemListTableViewController alloc] init];
-        [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -33,14 +32,6 @@
 {
     [super viewDidLoad];
     [self initRssChannel];
-    NSNotificationCenter*   center;
-    center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
-                   name:RSSConnectorDidBeginRefreshAllChannels object:nil];
-    [center addObserver:self selector:@selector(connectorInProgressRefreshAllChannels:)
-                   name:RSSConnectorInProgressRefreshAllChannels object:nil];
-    [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
-                   name:RSSConnectorDidFinishRefreshAllChannels object:nil];
 }
 - (void)initRssChannel {
     if ([KMRSSChannelManager sharedManager].channels.count==0)
@@ -65,11 +56,8 @@
     if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
-   
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
-    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
-    self.navigationItem.rightBarButtonItem = reloadButton;
-    
+
     NSArray*    channels;
     channels = [KMRSSChannelManager sharedManager].channels;
     if ([self.tableView numberOfRowsInSection:0] != [channels count]) {
@@ -91,18 +79,6 @@
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
     }
-    if (!_isDownloaded) {
-        [[KMRSSConnector sharedConnector]refreshAllChannels];
-        _isDownloaded=YES;
-    }
-
-}
-- (void)reloadChannel
-{
-    [[KMRSSConnector sharedConnector] cancelRefreshAllChannels];
-    [[KMRSSConnector sharedConnector]refreshAllChannels];
-    _isDownloaded=YES;
-
 }
 - (void)didReceiveMemoryWarning
 {
@@ -155,10 +131,6 @@
     if (!channel) {
         return;
     }
-/*
-    KMRSSItemListTableViewController*  controller;
-    controller = [[KMRSSItemListTableViewController alloc] init];
-*/
     controller.channel = channel;
     controller.delegate = self;
     
@@ -171,49 +143,15 @@
 
 - (void)connectorDidBeginRefreshAllChannels:(NSNotification*)notification
 {
-/*
-    _refreshAllChannelsSheet = [[UIActionSheet alloc]
-                                initWithTitle:@"ダウンロード中…"
-                                delegate:self
-                                cancelButtonTitle:@"キャンセル"
-                                destructiveButtonTitle:nil
-                                otherButtonTitles:nil];
-    [_refreshAllChannelsSheet showFromTabBar:self.tabBarController.tabBar];
-*/
 }
 
 - (void)connectorInProgressRefreshAllChannels:(NSNotification*)notification
 {
-/*
-    // 進捗を取得する
-    float   progress;
-    progress = [[KMRSSConnector sharedConnector] progressOfRefreshAllChannels];
-    
-    // アクションシートのタイトルを更新する
-    _refreshAllChannelsSheet.title =
-    [NSString stringWithFormat:@"Refreshing all channels… %d", (int)(progress * 100)];
-*/
 }
 
 - (void)connectorDidFinishRefreshAllChannels:(NSNotification*)notification
 {
-/*
-    [_refreshAllChannelsSheet dismissWithClickedButtonIndex:0 animated:YES];
-    _refreshAllChannelsSheet = nil;
-*/
 }
-- (void)_updateNetworkActivity
-{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible =
-    [KMRSSConnector sharedConnector].networkAccessing;
-}
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"networkAccessing"]) {
-        [self _updateNetworkActivity];
-    }
-}
-
 -(void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     

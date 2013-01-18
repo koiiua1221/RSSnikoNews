@@ -98,6 +98,23 @@ static KMHTMLConnector*    _sharedInstance = nil;
     [[NSNotificationCenter defaultCenter]
      postNotificationName:HTMLConnectorDidBeginRefreshAllChannels object:self userInfo:userInfo];
 }
+- (void)refreshChannel:(NSString*)urlString
+{
+    BOOL    networkAccessing;
+    networkAccessing = self.networkAccessing;
+    
+    KMHTMLResponseParser*  parser;
+    parser = [[KMHTMLResponseParser alloc] init];
+        parser.feedUrlString = urlString;
+        parser.delegate = self;
+        [parser parse];
+        [_refreshAllChannelParsers addObject:parser];
+
+    if (networkAccessing != self.networkAccessing) {
+        [self willChangeValueForKey:@"networkAccessing"];
+        [self didChangeValueForKey:@"networkAccessing"];
+    }
+}
 - (float)progressOfRefreshAllChannels
 {
     // パーサが無い場合

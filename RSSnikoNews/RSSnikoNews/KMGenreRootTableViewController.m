@@ -8,7 +8,7 @@
 
 #import "KMGenreRootTableViewController.h"
 #import "KMHTMLChannelManager.h"
-#import "KMHTMLItemListTableViewController.h"
+#import "KMGenreItemListTableViewController.h"
 #import "KMHTMLConnector.h"
 
 @interface KMGenreRootTableViewController ()
@@ -23,7 +23,7 @@
     if (self) {
         self.view.backgroundColor = [UIColor grayColor];
         self.title = @"ジャンル別";
-        controller = [[KMHTMLItemListTableViewController alloc] init];
+        controller = [[KMGenreItemListTableViewController alloc] init];
     }
     return self;
 }
@@ -32,8 +32,8 @@
 {
     [super viewDidLoad];
     [self initHTMLChannel];
-    [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
-
+//    [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
+/*
     NSNotificationCenter*   center;
     center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(connectorDidBeginRefreshAllChannels:)
@@ -42,6 +42,7 @@
                    name:HTMLConnectorInProgressRefreshAllChannels object:nil];
     [center addObserver:self selector:@selector(connectorDidFinishRefreshAllChannels:)
                    name:HTMLConnectorDidFinishRefreshAllChannels object:nil];
+*/
 }
 - (void)initHTMLChannel {
     if ([KMHTMLChannelManager sharedManager].channels.count==0)
@@ -63,14 +64,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     if ([UIApplication sharedApplication].networkActivityIndicatorVisible) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
-    
     self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
+/*
     UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
     self.navigationItem.rightBarButtonItem = reloadButton;
-    
+*/    
     NSArray*    channels;
     channels = [KMHTMLChannelManager sharedManager].channels;
     if ([self.tableView numberOfRowsInSection:0] != [channels count]) {
@@ -92,11 +94,12 @@
             [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
         }
     }
+/*
     if (!_isDownloaded) {
         [[KMHTMLConnector sharedConnector]refreshAllChannels];
         _isDownloaded=YES;
     }
-
+*/
 }
 /*
 - (void)viewWillUnload
@@ -104,13 +107,15 @@
     [[KMHTMLConnector sharedConnector]removeObserver:self forKeyPath:@"networkAccessing"];
 }
 */
+/*
 - (void)reloadChannel
 {
     [[KMHTMLConnector sharedConnector] cancelRefreshAllChannels];
     [[KMHTMLConnector sharedConnector]refreshAllChannels];
-    _isDownloaded=YES;
+//    _isDownloaded=YES;
     
 }
+*/
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -162,8 +167,9 @@
     if (!channel) {
         return;
     }
-    KMHTMLItemListTableViewController*  controller;
-    controller = [[KMHTMLItemListTableViewController alloc] init];
+
+//    KMGenreItemListTableViewController*  controller;
+//    controller = [[KMGenreItemListTableViewController alloc] init];
     controller.channel = channel;
     controller.delegate = self;
     
@@ -207,17 +213,21 @@
     _refreshAllChannelsSheet = nil;
 */
 }
+/*
 - (void)_updateNetworkActivity
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible =
     [KMHTMLConnector sharedConnector].networkAccessing;
 }
+*/
+/*
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"networkAccessing"]) {
         [self _updateNetworkActivity];
     }
 }
+*/
 -(void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     

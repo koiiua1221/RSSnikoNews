@@ -15,6 +15,7 @@
     UIWebView* _webTwitterView;
     UITableView *_tableView;
     NSArray *_tweets;
+    NSArray *_tweetUsers;
     NSMutableArray *_tweetImages;
     NSMutableData* _downloadedData;
     UILabel* _topicTitle;

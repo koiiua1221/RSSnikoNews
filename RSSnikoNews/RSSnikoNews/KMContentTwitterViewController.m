@@ -25,7 +25,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -33,8 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-//    bounds = [[UIScreen mainScreen]bounds];
     _tweetImages = [[NSMutableArray alloc]init];
     bounds = [[UIScreen mainScreen]bounds];
     
@@ -42,18 +39,14 @@
     height = bounds.size.height - self.tabBarController.tabBar.bounds.size.height-self.navigationController.navigationBar.bounds.size.height;
     
     _topicTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bounds.size.width, height*0.1)];
-    _topicTitle.textAlignment=UITextAlignmentCenter;
+    _topicTitle.textAlignment=UITextAlignmentLeft;
     _topicTitle.textColor=[UIColor whiteColor];
-    [[_topicTitle layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[_topicTitle layer] setBorderWidth:2];
     _topicTitle.backgroundColor=[UIColor darkGrayColor];
-    _topicTitle.text=@"Twitterの反応";
+    _topicTitle.text=@"  Twitterの反応";
     [self.view addSubview:_topicTitle];
     
     _webTwitterView = [[UIWebView alloc]initWithFrame:CGRectMake(0, height*0.1, bounds.size.width, height*0.9)];
     _webTwitterView.delegate = self;
-    [[_webTwitterView layer] setBorderColor:[[UIColor blackColor] CGColor] ];
-    [[_webTwitterView layer] setBorderWidth:2];
     [self.view addSubview:_webTwitterView];
 
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, height*0.1, bounds.size.width*0.87, self.view.bounds.size.height-height*0.1) style:UITableViewStyleGrouped];
@@ -96,6 +89,12 @@
 {
     
     _tweets = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/p[@class='user-description']");
+    _tweetUsers = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/p[@class='user-name']/a");
+
+    for (NSDictionary *tweetUser in _tweetUsers) {
+        NSLog([tweetUser objectForKey:@"nodeContent"] );
+    }
+
     NSArray *tweetImageUrls = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/a/img[@title]");
     for (NSDictionary *tweetImageUrl in tweetImageUrls) {
         id urltmp =[[[tweetImageUrl objectForKey:@"nodeAttributeArray"] objectAtIndex:1]objectForKey:@"nodeContent"];
@@ -163,13 +162,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
     NSString *body = [tweet objectForKey:@"nodeContent"];;
 	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0, 480.0) lineBreakMode:UILineBreakModeWordWrap];
-	return size.height +30;
+	return size.height +30+35;
 
 }
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, cell.frame.size.height, cell.frame.size.height)];
+    NSDictionary *tweetUser = [_tweetUsers objectAtIndex:indexPath.row];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 4.0, cell.frame.size.height-4.0, cell.frame.size.height-4.0)];
     imageView.image=[_tweetImages objectAtIndex:indexPath.row];
     [cell.contentView addSubview:imageView];
 
@@ -184,7 +184,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     message.tag = 0;
     [message addSubview:label];
     [cell.contentView addSubview:message];
-    NSString *text = [tweet objectForKey:@"nodeContent"];;
+    NSString *text = [tweetUser objectForKey:@"nodeContent"];
+    text = [text stringByAppendingFormat:@"\n%@",[tweet objectForKey:@"nodeContent"] ];
    
     CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0f-cell.frame.size.height, height) lineBreakMode:UILineBreakModeWordWrap];
     label.frame = CGRectMake(20, 11, size.width + 5, size.height);

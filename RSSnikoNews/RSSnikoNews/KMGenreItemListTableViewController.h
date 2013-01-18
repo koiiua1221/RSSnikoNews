@@ -1,5 +1,5 @@
 //
-//  KMHTMLItemListTableViewController.h
+//  KMGenreItemListTableViewController.h
 //  RSSnikoNews
 //
 //  Created by KoujiMiura on 2012/12/21.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @class KMHTMLChannel;
 
-@interface KMHTMLItemListTableViewController : UITableViewController
+@interface KMGenreItemListTableViewController : UITableViewController
 {
     KMHTMLChannel* _channel;
     id  __unsafe_unretained _delegate;

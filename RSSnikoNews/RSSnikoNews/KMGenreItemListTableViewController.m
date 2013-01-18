@@ -1,12 +1,12 @@
 //
-//  KMHTMLItemListTableViewController.m
+//  KMGenreItemListTableViewController.m
 //  RSSnikoNews
 //
 //  Created by KoujiMiura on 2012/12/21.
 //  Copyright (c) 2012年 KoujiMiura. All rights reserved.
 //
 
-#import "KMHTMLItemListTableViewController.h"
+#import "KMGenreItemListTableViewController.h"
 #import "KMHTMLItem.h"
 #import "KMHTMLChannel.h"
 #import "KMContentViewController.h"
@@ -16,11 +16,11 @@
 #import "IIViewDeckController.h"
 #import "KMContentTwitterViewController.h"
 
-@interface KMHTMLItemListTableViewController ()
+@interface KMGenreItemListTableViewController ()
 
 @end
 
-@implementation KMHTMLItemListTableViewController
+@implementation KMGenreItemListTableViewController
 @synthesize delegate = _delegate;
 @synthesize channel = _channel;
 
@@ -28,7 +28,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-//        [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
+        [[KMHTMLConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -36,15 +36,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+/*
     if ([UIApplication sharedApplication].networkActivityIndicatorVisible==YES) {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+*/
     self.title = _channel.title;
+
+    [[KMHTMLConnector sharedConnector]refreshChannel:_channel.feedUrlString];
+
+    self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
+    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
+    self.navigationItem.rightBarButtonItem = reloadButton;
 
     NSIndexPath*    indexPath;
     indexPath = [self.tableView indexPathForSelectedRow];
@@ -55,7 +64,16 @@
     for (UITableViewCell* cell in [self.tableView visibleCells]) {
         [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
     }
+    
+//    [self.tableView reloadData];
 }
+- (void)reloadChannel
+{
+    [[KMHTMLConnector sharedConnector]refreshChannel:_channel.feedUrlString];
+    //    _isDownloaded=YES;
+    
+}
+
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     NSArray*    items;
@@ -103,7 +121,6 @@
     
     return cell;
 }
-/*
 - (void)_updateNetworkActivity
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible =
@@ -114,8 +131,11 @@
     if ([keyPath isEqualToString:@"networkAccessing"]) {
         [self _updateNetworkActivity];
     }
+    if (![KMHTMLConnector sharedConnector].networkAccessing) {
+        [self.tableView reloadData];
+    }
 }
-*/
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

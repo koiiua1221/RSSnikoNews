@@ -15,6 +15,7 @@
     UIWebView* _webView;
     UIWebView* _webTwitterView;
     UILabel* _topicTitle;
+    UIImageView* _twitterBar;
     NSMutableData* _downloadedData;
     NSURLConnection* _connection;
     int _networkState;

@@ -27,5 +27,6 @@ extern NSString*    RSSConnectorDidFinishRefreshAllChannels;
 - (void)refreshAllChannels;
 - (float)progressOfRefreshAllChannels;
 - (void)cancelRefreshAllChannels;
+- (void)refreshChannel:(NSString*)urlString;
 
 @end

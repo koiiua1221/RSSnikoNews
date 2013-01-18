@@ -27,7 +27,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-//        [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
+        [[KMRSSConnector sharedConnector]addObserver:self forKeyPath:@"networkAccessing" options:0 context:NULL];
     }
     return self;
 }
@@ -44,6 +44,12 @@
     }
     self.title = _channel.title;
     
+    [[KMRSSConnector sharedConnector] refreshChannel:_channel.feedUrlString];
+
+    self.navigationController.navigationBar.tintColor  = [UIColor blackColor];
+    UIBarButtonItem *reloadButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(reloadChannel)];
+    self.navigationItem.rightBarButtonItem = reloadButton;
+
     NSIndexPath*    indexPath;
     indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
@@ -53,6 +59,11 @@
     for (UITableViewCell* cell in [self.tableView visibleCells]) {
         [self _updateCell:cell atIndexPath:[self.tableView indexPathForCell:cell]];
     }
+}
+- (void)reloadChannel
+{
+    [[KMRSSConnector sharedConnector] refreshChannel:_channel.feedUrlString];
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -95,7 +106,6 @@
 
     return cell;
 }
-/*
 - (void)_updateNetworkActivity
 {
     [UIApplication sharedApplication].networkActivityIndicatorVisible =
@@ -106,8 +116,11 @@
     if ([keyPath isEqualToString:@"networkAccessing"]) {
         [self _updateNetworkActivity];
     }
+    if (![KMRSSConnector sharedConnector].networkAccessing) {
+        [self.tableView reloadData];
+    }
+
 }
-*/
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,10 +135,6 @@
     if (!item) {
         return;
     }
-/*
-    KMRSSContentViewController*   controller;
-    controller = [[KMRSSContentViewController alloc] init];
-*/
     KMContentViewController*  controller;
     controller = [[KMContentViewController alloc] init];
     controller.item = item;

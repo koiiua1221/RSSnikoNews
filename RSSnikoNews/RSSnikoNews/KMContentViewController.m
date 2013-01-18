@@ -42,7 +42,8 @@
 {
     [super viewWillAppear:animated];
     [self setTitle:@"記事"];
-    _topicTitle.text=_item.title;
+    _topicTitle.text=[NSString stringWithFormat:@"  %@",_item.title];
+    
     [_topicTitle setAdjustsFontSizeToFitWidth:true];
     [_topicTitle setAdjustsLetterSpacingToFitWidth:true];
 }
@@ -51,7 +52,7 @@
     [super viewDidLoad];
         
     bounds = [[UIScreen mainScreen]bounds];
-
+    
     height = bounds.size.height - self.tabBarController.tabBar.bounds.size.height-self.navigationController.navigationBar.bounds.size.height;
 
     _topicTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, bounds.size.width, height*0.1)];
@@ -59,16 +60,24 @@
     _topicTitle.textColor=[UIColor whiteColor];
     _topicTitle.numberOfLines=2;
     _topicTitle.lineBreakMode=UILineBreakModeWordWrap;
-    [[_topicTitle layer] setBorderColor:[[UIColor blackColor] CGColor]];
-    [[_topicTitle layer] setBorderWidth:2];
+//    [[_topicTitle layer] setBorderColor:[[UIColor blackColor] CGColor]];
+//    [[_topicTitle layer] setBorderWidth:2];
     _topicTitle.backgroundColor=[UIColor darkGrayColor];
     [self.view addSubview:_topicTitle];
 
+    
     _webView = [[UIWebView alloc]init];
     _webView.delegate = self;
-    [[_webView layer] setBorderColor:[[UIColor blackColor] CGColor] ];
-    [[_webView layer] setBorderWidth:2];
+//    [[_webView layer] setBorderColor:[[UIColor blackColor] CGColor] ];
+//    [[_webView layer] setBorderWidth:2];
+    _webView.frame=CGRectMake(bounds.origin.x, height*0.1,bounds.size.width , height*0.9);
+
     [self.view addSubview:_webView];
+    _twitterBar = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"twitterBar.png"]];
+    
+    _twitterBar.frame=CGRectMake(0, height*0.5-60,10 , 120);
+    [self.view addSubview:_twitterBar];
+
     [self parse];
 }
 
@@ -121,7 +130,6 @@
     
     _imgs = PerformHTMLXPathQuery(_downloadedData, @"//img[@id='image-view-area']");
     
-    _webView.frame=CGRectMake(bounds.origin.x, height*0.1,bounds.size.width , height*0.9);
     [self _updateHTMLContents];
 }
 - (void)_updateHTMLContents
@@ -140,7 +148,7 @@
     [html appendString:@"<meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">"];
     [html appendString:@"<meta name=\"viewport\" content=\"minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no\" />"];
     [html appendString:@"</head>"];
-    [html appendString:@"<body>"];
+    [html appendString:@"<body leftmargin=\"15\" bottommargin=\"60\">"];
     
     if ([_imgs count]!=0) {
         [html appendString:@"<img src=\""];
