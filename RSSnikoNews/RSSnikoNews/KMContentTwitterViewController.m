@@ -95,7 +95,8 @@
         NSLog([tweetUser objectForKey:@"nodeContent"] );
     }
 
-    NSArray *tweetImageUrls = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/a/img[@title]");
+    tweetImageUrls = PerformHTMLXPathQuery(_downloadedData, @"//div[@id='twitter-remains']/ul/li/a/img[@title]");
+/*
     for (NSDictionary *tweetImageUrl in tweetImageUrls) {
         id urltmp =[[[tweetImageUrl objectForKey:@"nodeAttributeArray"] objectAtIndex:1]objectForKey:@"nodeContent"];
         NSURL *url = [NSURL URLWithString:urltmp];
@@ -104,12 +105,27 @@
         [_tweetImages addObject:tweetImage];
 
     }
+*/
+    [NSThread detachNewThreadSelector:@selector(downloadTwitterImages) toTarget:self withObject:nil];
+    
     if ([_tweets count]==0) {
     }else{
         [_tableView reloadData];
     }
 }
-
+- (void)downloadTwitterImages
+{
+    for (NSDictionary *tweetImageUrl in tweetImageUrls) {
+        id urltmp =[[[tweetImageUrl objectForKey:@"nodeAttributeArray"] objectAtIndex:1]objectForKey:@"nodeContent"];
+        NSURL *url = [NSURL URLWithString:urltmp];
+        NSData *imgFile = [NSData dataWithContentsOfURL:url];
+        UIImage *tweetImage = [[UIImage alloc] initWithData:imgFile];
+        [_tweetImages addObject:tweetImage];
+        [_tableView reloadData];
+        
+    }
+    [_tableView reloadData];
+}
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
     _connection = nil;
@@ -170,9 +186,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
     NSDictionary *tweetUser = [_tweetUsers objectAtIndex:indexPath.row];
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 4.0, cell.frame.size.height-4.0, cell.frame.size.height-4.0)];
-    imageView.image=[_tweetImages objectAtIndex:indexPath.row];
+    if (_tweetImages.count>=indexPath.row+1) {
+        imageView.image=[_tweetImages objectAtIndex:indexPath.row];
+    }
+//    if (![_tweetImages objectAtIndex:indexPath.row]) {
+//    }
     [cell.contentView addSubview:imageView];
-
+/*
+*/
     UILabel *label;
     label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];

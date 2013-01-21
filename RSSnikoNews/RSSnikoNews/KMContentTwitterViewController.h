@@ -16,6 +16,7 @@
     UITableView *_tableView;
     NSArray *_tweets;
     NSArray *_tweetUsers;
+    NSMutableArray *tweetImageUrls;
     NSMutableArray *_tweetImages;
     NSMutableData* _downloadedData;
     UILabel* _topicTitle;
