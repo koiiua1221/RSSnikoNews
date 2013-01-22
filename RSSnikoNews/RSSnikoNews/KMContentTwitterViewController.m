@@ -191,47 +191,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 {
     NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
     NSDictionary *tweetUser = [_tweetUsers objectAtIndex:indexPath.row];
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 4.0, cell.frame.size.height-4.0, cell.frame.size.height-4.0)];
-/*
-    if (_tweetImages.count>=indexPath.row+1) {
-        imageView.image=[_tweetImages objectAtIndex:indexPath.row];
-        [cell.contentView addSubview:imageView];
-    }else{
-        dispatch_queue_t q_global, q_main;
-        q_global = dispatch_get_global_queue(0, 0);
-        q_main = dispatch_get_main_queue();
-        dispatch_async(q_global, ^{
-            UIActivityIndicatorView *indicator;
-            indicator = [[UIActivityIndicatorView alloc]
-						 initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            indicator.frame =imageView.bounds;
-			indicator.hidesWhenStopped = TRUE;
-			indicator.contentMode = UIViewContentModeCenter;
-			[indicator startAnimating];
-            dispatch_async(q_main, ^{
-				imageView.image = nil;
-                [imageView addSubview:indicator];
-                [cell.contentView addSubview:imageView];
-			});
-            
-            NSURL *url = [NSURL URLWithString:[tweetImageUrls objectAtIndex:indexPath.row]];
-            NSData *imgFile = [NSData dataWithContentsOfURL:url];
-            UIImage *tweetImage = [[UIImage alloc] initWithData:imgFile];
-            if (tweetImage) {
-                [_tweetImages addObject:tweetImage];
-            }
-			dispatch_async(q_main, ^{
-				[indicator removeFromSuperview];
-				imageView.image = tweetImage;
-                [cell.contentView addSubview:imageView];                
-            });
-
-        });
-
-    }
-//    if (![_tweetImages objectAtIndex:indexPath.row]) {
-//    }
-*/
     UILabel *label;
     label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];
@@ -251,6 +210,41 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     label.text = text;
 
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 4.0, cell.frame.size.height-4.0, cell.frame.size.height-4.0)];
+    [cell.contentView addSubview:imageView];
+
+    
+    UIActivityIndicatorView *indicator;
+    indicator = [[UIActivityIndicatorView alloc]
+                 initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    indicator.frame =imageView.bounds;
+    indicator.hidesWhenStopped = TRUE;
+    indicator.contentMode = UIViewContentModeCenter;
+    [indicator startAnimating];
+    [imageView addSubview:indicator];
+
+    dispatch_queue_t q_global, q_main;
+    q_global = dispatch_get_global_queue(0, 0);
+    q_main = dispatch_get_main_queue();
+
+	dispatch_async(q_global, ^{
+        NSURL *url = [NSURL URLWithString:[tweetImageUrls objectAtIndex:indexPath.row]];
+        NSData *imgFile = [NSData dataWithContentsOfURL:url];
+        UIImage *tweetImage = [[UIImage alloc] initWithData:imgFile];
+        if (tweetImage) {
+            [_tweetImages addObject:tweetImage];
+        }
+
+		dispatch_async(q_main, ^{
+			imageView.image = tweetImage;
+			indicator.hidden = YES;
+            
+		});
+	});
+
+/*
     if (_tweetImages.count>=indexPath.row+1) {
         imageView.image=[_tweetImages objectAtIndex:indexPath.row];
         [cell.contentView addSubview:imageView];
@@ -287,6 +281,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
         });
         
     }
+*/
 
 }
 @end
