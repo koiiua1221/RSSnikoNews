@@ -153,7 +153,7 @@
     NSString *CellIdentifier = @"tweetCell";
     CellIdentifier=[CellIdentifier stringByAppendingFormat:@"%d",indexPath.row];
     UITableViewCell *cell;
-//    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 //    if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 //    }
@@ -182,9 +182,16 @@
 - (CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *tweet = [_tweets objectAtIndex:indexPath.row];
-    NSString *body = [tweet objectForKey:@"nodeContent"];;
+    NSString *body = [tweet objectForKey:@"nodeContent"];
+    
+    NSDictionary *tweetUser = [_tweetUsers objectAtIndex:indexPath.row];
+    NSString *name = [tweetUser objectForKey:@"nodeContent"];
+ 
+    CGSize nameSize = [name sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0, 480.0) lineBreakMode:UILineBreakModeTailTruncation];
+    
 	CGSize size = [body sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0, 480.0) lineBreakMode:UILineBreakModeWordWrap];
-	return size.height +30+35;
+//	return size.height +30+35;
+	return size.height+nameSize.height +30;
 
 }
 - (void)_updateCell:(UITableViewCell*)cell atIndexPath:(NSIndexPath*)indexPath
