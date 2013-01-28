@@ -23,7 +23,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        self.title = @"保存News";
+        self.title = @"お気に入り";
     }
     return self;
 }

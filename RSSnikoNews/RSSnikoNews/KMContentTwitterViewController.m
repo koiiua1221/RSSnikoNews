@@ -212,7 +212,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *text = [tweetUser objectForKey:@"nodeContent"];
     text = [text stringByAppendingFormat:@"\n%@",[tweet objectForKey:@"nodeContent"] ];
    
-    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0f-cell.frame.size.height, height) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:14.0] constrainedToSize:CGSizeMake(230.0f-cell.frame.size.height, height) lineBreakMode:UILineBreakModeWordWrap];//LineBreakMode wrong??
     label.frame = CGRectMake(20, 11, size.width + 5, size.height);
     label.text = text;
 
@@ -250,45 +250,5 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath{
             
 		});
 	});
-
-/*
-    if (_tweetImages.count>=indexPath.row+1) {
-        imageView.image=[_tweetImages objectAtIndex:indexPath.row];
-        [cell.contentView addSubview:imageView];
-    }else{
-        dispatch_queue_t q_global, q_main;
-        q_global = dispatch_get_global_queue(0, 0);
-        q_main = dispatch_get_main_queue();
-        dispatch_async(q_global, ^{
-            UIActivityIndicatorView *indicator;
-            indicator = [[UIActivityIndicatorView alloc]
-						 initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-            indicator.frame =imageView.bounds;
-			indicator.hidesWhenStopped = TRUE;
-			indicator.contentMode = UIViewContentModeCenter;
-			[indicator startAnimating];
-            dispatch_async(q_main, ^{
-				imageView.image = nil;
-                [imageView addSubview:indicator];
-                [cell.contentView addSubview:imageView];
-			});
-            
-            NSURL *url = [NSURL URLWithString:[tweetImageUrls objectAtIndex:indexPath.row]];
-            NSData *imgFile = [NSData dataWithContentsOfURL:url];
-            UIImage *tweetImage = [[UIImage alloc] initWithData:imgFile];
-            if (tweetImage) {
-                [_tweetImages addObject:tweetImage];
-            }
-			dispatch_async(q_main, ^{
-				[indicator removeFromSuperview];
-				imageView.image = tweetImage;
-                [cell.contentView addSubview:imageView];
-            });
-            
-        });
-        
-    }
-*/
-
 }
 @end

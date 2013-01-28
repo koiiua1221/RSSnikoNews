@@ -334,7 +334,7 @@ static NSTimeInterval durationToAnimate(CGFloat pointsToAnimate, CGFloat velocit
 - (void)saveItem
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"確認"
-                                                    message:@"記事を保存しますか？"
+                                                    message:@"お気に入りに追加しますか？"
                                                    delegate:self
                                           cancelButtonTitle:@"NO"
                                           otherButtonTitles:@"YES",nil];
@@ -350,7 +350,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex {
         [[KMSaveItemManager sharedManager] addSaveItem:saveItem];
         [[KMSaveItemManager sharedManager] save];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"完了メッセージ"
-                                                        message:@"記事を保存しました。"
+                                                        message:@"お気に入りに追加しました。"
                                                        delegate:self
                                               cancelButtonTitle:@"確認"
                                               otherButtonTitles:nil];
